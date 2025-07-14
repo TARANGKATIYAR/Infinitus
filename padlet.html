@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Padlet Wall of Dreams</title>
+
+ <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="padlet.css" />
+  
+</head>
+<body>
+         <nav class="navbar">
+    <div class="logo">AI Beyond Sight</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gen.html">Generative AI</a></li>
+      <li><a href="#applications">Applications</a></li>
+      <li><a href="padlet.html">Padlet</a></li>
+      <li><a href="#vision">Vision</a></li>
+    </ul>
+  </nav>
+  <!-- Header Section -->
+   <br><br>
+  <header class="header-section" data-aos="fade-down">
+    <h1 class="title">Padlet Wall of Dreams</h1>
+    <p class="subtitle">Where imagination meets collaboration — powered by AI.</p>
+  </header>
+
+  <!-- Optional Clear All Posts Button -->
+  <button id="clearBtn" class="clear-all-btn" title="Clear all dreams">Clear All</button>
+
+  <!-- Floating '+' Button to Open Modal -->
+  <button id="openModalBtn" class="floating-add-btn" title="Add your dream">+</button>
+
+  <!-- Modal Popup Form -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+      <button id="closeModalBtn" aria-label="Close modal" class="close-btn">&times;</button>
+      <h2>Add Your Dream</h2>
+      <form id="postForm">
+        <input type="text" id="titleInput" placeholder="Dream Title" required />
+        <input type="text" id="nameInput" placeholder="Your Name" required />
+        <textarea id="descriptionInput" placeholder="Describe your dream..." rows="4" required></textarea>
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Wall of Posts -->
+  <section class="post-wall" data-aos="fade-up">
+    <div id="postGrid" class="post-grid">
+      <!-- Cards will be inserted here dynamically by JS -->
+    </div>
+  </section>
+
+  <!-- AOS & JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="padlet.js" defer></script>
+</body>
+</html>
