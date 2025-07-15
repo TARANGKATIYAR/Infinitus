@@ -1,0 +1,312 @@
+/* === VARIABLES === */
+:root {
+  --bg-dark: #0a0f2c;
+  --bg-dark: #0d0d0d;
+  --neon-blue: #00ffe7;
+  --electric-violet: #a86eff;
+  --neon-pink: #ff5ecd;
+  --glass-white: rgba(255, 255, 255, 0.05);
+  --text-light: #e0e0e0;
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --border-glow: rgba(0, 255, 231, 0.4);
+  --font-jettbrains: 'JetBrains Mono', monospace;
+}
+
+/* === BASE RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-jettbrains);
+}
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  line-height: 1.7;
+}
+img {
+  max-width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+h1, h2, h3 {
+  font-family: var(--font-heading);
+}
+ul {
+  list-style-type: none;
+  padding-left: 1.2em;
+}
+ul li::before {
+  color: var(--neon-blue);
+  margin-right: 0.5em;
+}
+
+/* === HERO SECTION === */
+.hero {
+  position: relative;
+  height: 50vh;
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-overlay {
+  z-index: 2;
+  padding: 2rem;
+}
+.hero h1 {
+  font-size: 4rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 15px var(--neon-blue);
+}
+.hero p {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  color: #ccc;
+}
+.start-btn {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  color: var(--neon-pink);
+  border: 2px solid var(--neon-pink);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.start-btn:hover {
+  background-color: var(--neon-pink);
+  color: #0a0f2c;
+  box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* === SECTIONS === */
+.section {
+  padding: 5rem 8%;
+  position: relative;
+}
+.section.dark {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+.section h2 {
+  font-size: 2.2rem;
+  color: var(--neon-blue);
+  margin-bottom: 1.5rem;
+}
+.section p, .section li {
+  font-size: 1rem;
+  color: #ccc;
+}
+.section img {
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+/* === TWO-COL LAYOUT === */
+.two-col {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.two-col .text, .two-col .image {
+  flex: 1 1 45%;
+}
+.two-col .image {
+  text-align: center;
+}
+
+/* === GRID TILES SECTION === */
+.grid-tiles {
+  text-align: center;
+}
+.grid-tiles h2 {
+  color: var(--electric-violet);
+  margin-bottom: 2rem;
+}
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.tile {
+  background: var(--glass-white);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: left;
+  transition: 0.3s;
+}
+.tile:hover {
+  box-shadow: 0 0 25px var(--neon-blue);
+  transform: translateY(-5px);
+}
+
+/* === CENTERED TEXT BLOCKS === */
+.text.centered {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+/* === MIRROR OF INTENT === */
+.mirror {
+  background: radial-gradient(ellipse at center, #151b35 0%, #0a0f2c 100%);
+  padding: 6rem 8%;
+}
+.mirror-glass {
+  background: var(--glass-white);
+  border-radius: 20px;
+  padding: 3rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  box-shadow: 0 0 30px var(--electric-violet);
+}
+.mirror h2 {
+  color: var(--neon-pink);
+  margin-bottom: 1rem;
+}
+
+/* === FINAL CALL SECTION === */
+.final-call {
+  background: linear-gradient(to right, #0a0f2c, #151b35);
+  padding: 6rem 8%;
+}
+.cta-btn {
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-heading);
+  background: transparent;
+  border: 2px solid var(--electric-violet);
+  color: var(--electric-violet);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.cta-btn:hover {
+  background: var(--electric-violet);
+  color: #0a0f2c;
+  box-shadow: 0 0 20px var(--electric-violet);
+}
+
+/* === FOOTER === */
+.footer {
+  background-color: #0a0f2c;
+  color: #777;
+  text-align: center;
+  padding: 2rem 8%;
+  font-size: 0.9rem;
+}
+.footer-quote {
+  font-style: italic;
+  color: var(--neon-pink);
+  margin-top: 0.5rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .two-col {
+    flex-direction: column;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  .tiles {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .section {
+    padding: 4rem 5%;
+  }
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-glow);
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s ease;
+  font-family: var(--font-);
+}
+
+.navbar .logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    letter-spacing: 1px;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar .nav-links li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.navbar .nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: var(--neon-pink);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.navbar .nav-links li a:hover {
+  color: var(--neon-pink);
+}
+
+.navbar .nav-links li a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar .nav-links li {
+    width: 100%;
+  }
+
+  .navbar .nav-links li a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+}
