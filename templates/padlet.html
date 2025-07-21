@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Padlet Wall of Dreams</title>
+    <link rel="icon" type="image/x-icon" href="{% static './media/logo.png' %}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS (Animate On Scroll) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="{% static './css/padlet.css' %}" />
+
+    <!-- CSRF token in cookies -->
+    <script>
+      document.cookie = "csrftoken={{ csrf_token }}";
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">AI Beyond Sight</div>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% comment %}
+        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
+        {% endcomment %}
+        <li><a href="{% url 'arvr' %}">AR/VR</a></li>
+        <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
+        <li><a href="{% url 'vision' %}">Vision</a></li>
+        <li><a href="{% url 'concerns' %}">Concerns</a></li>
+        <li><a href="{% url 'padlet' %}">Padlet</a></li>
+      </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <br /><br />
+    <header class="header-section" data-aos="fade-down">
+      <h1 class="title">Padlet Wall of Dreams</h1>
+      <p class="subtitle">
+        Where imagination meets collaboration — powered by AI.
+      </p>
+    </header>
+    <!-- Floating '+' Button to Open Modal -->
+    <button id="openModalBtn" class="floating-add-btn" title="Add your dream">
+      +
+    </button>
+
+    <!-- Modal Popup Form -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal">
+        <button id="closeModalBtn" aria-label="Close modal" class="close-btn">
+          &times;
+        </button>
+        <h2>Add Your Dream</h2>
+        {% csrf_token %}
+        <form id="postForm" method="POST" action="/submit">
+          <input
+            type="text"
+            id="titleInput"
+            name="title"
+            placeholder="Dream Title"
+            required
+          />
+          <input
+            type="text"
+            id="nameInput"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+          <textarea
+            id="descriptionInput"
+            name="description"
+            placeholder="Describe your dream..."
+            rows="4"
+            required
+          ></textarea>
+          <div class="form-actions">
+            <button type="submit" class="submit-btn">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Wall of Posts -->
+    <section class="post-wall" data-aos="fade-up">
+      <div id="postGrid" class="post-grid">
+        {% for dream in dreams %}
+        <div class="post-card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>{{ dream.title }}</h3>
+          <p>{{ dream.description }}</p>
+          <p class="author">- {{ dream.name }}</p>
+        </div>
+        {% empty %}
+        <p>No dreams posted yet. Be the first!</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- AOS & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("postForm");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const title = document.getElementById("titleInput").value;
+          const name = document.getElementById("nameInput").value;
+          const description = document.getElementById("descriptionInput").value;
+
+          fetch("/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+            body: JSON.stringify({ title, name, description }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                location.reload();
+              } else {
+                alert("Submission failed!");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let cookie of cookies) {
+              cookie = cookie.trim();
+              if (cookie.startsWith(name + "=")) {
+                cookieValue = decodeURIComponent(cookie.slice(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+
+        // Modal toggle logic
+        document.getElementById("openModalBtn").onclick = () => {
+          document.getElementById("modalOverlay").style.display = "flex";
+        };
+        document.getElementById("closeModalBtn").onclick = () => {
+          document.getElementById("modalOverlay").style.display = "none";
+        };
+      });
+    </script>
+  </body>
+</html>

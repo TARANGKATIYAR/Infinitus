@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Beyond Sight: AR & VR</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static './media/logo.png' %}"
+    />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static './css/arvr.css' %}" />
+  </head>
+  <body>
+    <!-- 🔷 NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">AI Beyond Sight</div>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% comment %}
+        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
+        {% endcomment %}
+        <li><a href="{% url 'arvr' %}">AR/VR</a></li>
+        <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
+        <li><a href="{% url 'vision' %}">Vision</a></li>
+        <li><a href="{% url 'concerns' %}">Concerns</a></li>
+        <li><a href="{% url 'padlet' %}">Padlet</a></li>
+      </ul>
+    </nav>
+
+    <!-- 🌌 HERO SECTION -->
+    <header class="hero-section">
+      <div class="hero-content" data-aos="zoom-in">
+        <h1>AI Beyond Sight</h1>
+        <p>Transforming Dreams Into Digital Realities</p>
+        <a href="#ar-section" class="cta-btn">Explore AR & VR</a>
+      </div>
+    </header>
+
+    <!-- 🧠 AR SECTION START -->
+    <section class="section-divider" id="ar-section">
+      <h2 data-aos="fade-up">Augmented Reality Applications</h2>
+    </section>
+
+    <section class="ar-block" data-aos="fade-right">
+      <div class="ar-image">
+        <img src="{% static "./media/ar1.jpg" %}"/>
+      </div>
+      <div class="ar-text">
+        <h3>Real-Time Object Recognition</h3>
+        <br />
+        <ol>
+          <li>
+            <strong>Instant Object Recognition</strong> – AI instantly
+            identifies and labels real-world objects like chairs, laptops, and
+            plants, enabling seamless human-environment interaction.
+          </li>
+          <li>
+            <strong>Context-Aware Overlays</strong> – It adds meaningful data
+            like names, specs, or temperature directly on the recognized
+            objects, making AR truly informative and interactive.
+          </li>
+          <li>
+            <strong>3D Mapping & Depth Estimation</strong> – AI builds a virtual
+            depth grid of the environment, allowing precise placement of virtual
+            elements and obstacle-aware AR experiences.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ar-block reverse" data-aos="fade-left">
+      <div class="ar-image">
+       <img src="{% static "./media/ar2.jpg" %}"/>
+      </div>
+      <div class="ar-text">
+        <h3>Environment Mapping & Depth Estimation</h3>
+        <br />
+        <ol>
+          <li>
+            <strong>Accurate 3D Environment Mapping</strong> – AI scans and
+            builds real-time 3D models of the surroundings, capturing surfaces,
+            structures, and spatial dimensions with high precision.
+          </li>
+          <li>
+            <strong>Room-Scale AR Experiences</strong> – It enables virtual
+            objects to interact naturally within the full scale of a room,
+            enhancing immersion and spatial coherence.
+          </li>
+          <li>
+            <strong>Obstacle-Aware Overlays</strong> – AI ensures virtual
+            content avoids real-world collisions by understanding object depth,
+            distance, and boundaries in real time.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ar-block" data-aos="flip-up">
+      <div class="ar-image">
+        <img src="{% static "./media/ar3.jpg" %}"/>
+      </div>
+      <div class="ar-text">
+        <h3>Smart AR Assistants</h3>
+        <ol>
+          <li>
+            <strong>Real-Time Translation & Recognition</strong> – AI-powered AR
+            can translate foreign signs, labels, and menus instantly, making
+            navigation and communication seamless across languages.
+          </li>
+          <li>
+            <strong>Live Navigation & Direction Overlays</strong> – Smart
+            assistants guide users with real-time arrows, route highlights, and
+            contextual cues right on the physical path in front of them.
+          </li>
+          <li>
+            <strong>Face & Product Identification</strong> – From recognizing
+            friends in a crowd to identifying products on shelves, these
+            assistants bring real-world context directly into your AR view.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ar-block reverse" data-aos="zoom-in-up">
+      <div class="ar-image">
+        <img src="{% static "./media/ar4.jpg" %}"/>
+      </div>
+      <div class="ar-text">
+        <h3>AI-Powered AR Translation</h3>
+        <ol>
+          <li>
+            <strong>Instant Text & Sign Translation</strong> – Using computer
+            vision, AI detects and translates printed or handwritten text in
+            real time, overlaying the translated version right onto the original
+            sign or surface.
+          </li>
+          <li>
+            <strong>Speech-to-AR Subtitles</strong> – NLP allows spoken language
+            to be converted into live subtitles, helping users understand
+            conversations across languages directly within their AR view.
+          </li>
+          <li>
+            <strong>Contextual & Location-Based Accuracy</strong> – AI ensures
+            translations make sense by analyzing context, location, and usage,
+            delivering smarter, culturally aware translations.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ar-block" data-aos="fade-up-right">
+      <div class="ar-image">
+        <img src="{% static "./media/ar5.jpg" %}"/>
+      </div>
+      <div class="ar-text">
+        <h3>Gesture & Action Recognition</h3>
+        <ol>
+          <li>
+            <strong>Real-Time Gesture Detection</strong> – AI analyzes hand
+            movements, facial expressions, and body posture to instantly
+            interpret gestures for smooth interaction with AR interfaces.
+          </li>
+          <li>
+            <strong>Touch-Free Control</strong> – Users can swipe, point, or
+            signal in the air to trigger actions—eliminating the need for
+            physical contact with screens or controllers.
+          </li>
+          <li>
+            <strong>Natural Human-Digital Interaction</strong> – By translating
+            body language into commands, AI bridges the gap between physical
+            intent and digital execution, enabling immersive, intuitive AR
+            experiences.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 💜 VR SECTION START -->
+    <section class="section-divider vr-divider" id="vr-section">
+      <h2 data-aos="fade-up">Virtual Reality Applications</h2>
+    </section>
+
+    <section class="vr-block" data-aos="fade-left">
+      <div class="vr-image">
+       <img src="{% static "./media/vr1.jpg" %}"/>
+      </div>
+      <div class="vr-text">
+        <h3>AI-Driven World Generation</h3>
+        <ol>
+          <li>
+            <strong>Prompt-Based Environment Creation</strong> – AI can generate
+            entire virtual worlds from simple text prompts or rough sketches,
+            turning ideas into immersive environments instantly.
+          </li>
+          <li>
+            <strong>Dynamic & Real-Time World Building</strong> – Virtual
+            landscapes, cities, or fantasy realms evolve in real time based on
+            user input, allowing for interactive and personalized experiences.
+          </li>
+          <li>
+            <strong>Revolutionizing Design & Exploration</strong> – This
+            technology empowers designers, gamers, and educators to explore
+            limitless spaces without manual 3D modeling, accelerating creativity
+            and innovation.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vr-block reverse" data-aos="fade-right">
+      <div class="vr-image">
+        <img src="{% static "./media/vr2.jpg" %}"/>
+      </div>
+      <div class="vr-text">
+        <h3>Lifelike Virtual Characters (AI NPCs)</h3>
+        <ol>
+          <li>
+            <strong>Natural Conversations & Reactions</strong> – AI enables NPCs
+            to engage in fluid, unscripted dialogues and respond intelligently
+            based on tone, context, and user behavior.
+          </li>
+          <li>
+            <strong>Emotional Intelligence & Learning</strong> – These
+            characters adapt over time, remembering past interactions, showing
+            empathy, and evolving their personalities to feel more human.
+          </li>
+          <li>
+            <strong>Immersive Roleplay & Storytelling</strong> – Whether guiding
+            players or driving narratives, AI NPCs add depth and realism, making
+            virtual worlds feel emotionally rich and dynamic.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vr-block" data-aos="flip-left">
+      <div class="vr-image">
+        <img src="{% static "./media/vr3.jpg" %}"/>
+      </div>
+      <div class="vr-text">
+        <h3>Emotionally Aware Interactions</h3>
+        <ol>
+          <li>
+            <strong>Mood Detection Through AI</strong> – By analyzing facial
+            expressions, voice tone, and body language, AI can sense a user's
+            emotional state in real time.
+          </li>
+          <li>
+            <strong>Adaptive Environments & Feedback</strong> – VR systems
+            dynamically adjust lighting, music, tone, or even narrative flow
+            based on the detected mood, creating deeply personalized
+            experiences.
+          </li>
+          <li>
+            <strong>Empathetic Digital Companions</strong> – Emotion-aware
+            characters respond with appropriate empathy or encouragement,
+            bridging emotional gaps between humans and machines.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vr-block reverse" data-aos="zoom-in-up">
+      <div class="vr-image">
+        <img src="{% static "./media/vr4.jpg" %}"/>
+      </div>
+      <div class="vr-text">
+        <h3>Adaptive Learning & Simulation</h3>
+        <ol>
+          <li>
+            <strong>Real-Time Content Adjustment</strong> – AI tailors the
+            simulation experience by modifying scenarios, pacing, and content
+            based on user responses and behavior.
+          </li>
+          <li>
+            <strong>Personalized Learning Paths</strong> – The system adapts
+            difficulty levels and learning modules to match each user's
+            progress, strengths, and weaknesses.
+          </li>
+          <li>
+            <strong>Engagement-Driven Simulation</strong> – AI tracks focus,
+            performance, and interaction patterns to keep training immersive,
+            challenging, and highly effective.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="vr-block" data-aos="fade-up-left">
+      <div class="vr-image">
+       <img src="{% static "./media/vr5.jpg" %}"/>
+      </div>
+      <div class="vr-text">
+        <h3>Procedural Storytelling & Dialogue</h3>
+        <ol>
+          <li>
+            <strong>Nonlinear Narrative Generation</strong> – AI crafts
+            branching storylines that adapt dynamically to user choices,
+            ensuring every journey is unique and personalized.
+          </li>
+          <li>
+            <strong>Realistic, Context-Aware Dialogue</strong> – Conversations
+            with characters feel natural and responsive, shaped by player
+            actions, tone, and previous interactions.
+          </li>
+          <li>
+            <strong>Endless Replayability</strong> – With procedural
+            storytelling, no two experiences are alike—encouraging exploration,
+            experimentation, and emotional engagement.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 🔚 FOOTER -->
+    <footer class="footer">
+      <p>© 2025 AI Beyond Sight · Dream it. See it. Live it.</p>
+      <p
+        style="font-style: italic; color: var(--neon-pink); margin-top: 0.5rem"
+      >
+        “Immersion is no longer a luxury — it's the language of the future.”
+      </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 1200, once: true });
+    </script>
+  </body>
+</html>

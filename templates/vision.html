@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vision | AI Beyond Sight</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="{% static './css/vision.css' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static './media/logo.png' %}"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">AI Beyond Sight</div>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        {% comment %}
+        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
+        {% endcomment %}
+        <li><a href="{% url 'arvr' %}">AR/VR</a></li>
+        <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
+        <li><a href="{% url 'vision' %}">Vision</a></li>
+        <li><a href="{% url 'concerns' %}">Concerns</a></li>
+        <li><a href="{% url 'padlet' %}">Padlet</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+      <div class="hero-content" data-aos="zoom-in">
+        <h1>AI BEYOND SIGHT</h1>
+        <p>Transforming Dreams Into Digital Realities</p>
+        <a href="#ar-section" class="cta-btn">Explore AR & VR</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- SECTION 1: MIND TO MATTER -->
+      <section class="vision-section glass left" data-aos="fade-right">
+        <div class="content">
+          <h2>1. Mind to Matter</h2>
+          <p>
+            AI makes it possible to bring raw thought into existence—whether
+            it's a dream, a sketch, or a fleeting emotion—translating cognitive
+            sparks into reality.
+          </p>
+        </div>
+        <div class="visual tilt">
+            <img src="{% static "./media/vision1.jpg" %}"/>
+        </div>
+      </section>
+
+      <!-- SVG Divider -->
+      <svg class="section-divider" viewBox="0 0 1440 100">
+        <path fill="#0d0d0d" d="M0,64L1440,0L1440,320L0,320Z"></path>
+      </svg>
+
+      <!-- SECTION 2: WHISPER TO WORLD -->
+      <section class="vision-section wave-banner" data-aos="fade-left">
+        <div class="visual">
+          <img src="{% static "./media/vision2.jpg" %}"/>
+        </div>
+        <div class="content">
+          <h2>2. Whisper to World</h2>
+          <p>
+            Natural language alone can now construct virtual cities, game
+            worlds, or imagined realities. Speak a sentence, and a digital world
+            materializes.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 3: PROMPT AS PAINTBRUSH -->
+      <section class="vision-fullscreen" data-aos="zoom-in">
+        <img
+          src="{% static "./media/vision3.jpg" %}"
+          class="background-img"
+        />
+        <div class="overlay-text">
+          <h2>3. Prompt as Paintbrush</h2>
+          <p>
+            Simple phrases create photoreal scenes. The line between concept and
+            creation fades, empowering makers like never before.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 4: MULTISENSORY OUTPUTS -->
+      <section class="vision-cluster" data-aos="fade-right">
+        <div class="visual">
+         <img src="{% static "./media/vision4a.jpg" %}"/>
+        </div>
+        <div class="content">
+          <h2>4. Multisensory Outputs</h2>
+          <p>
+            AI can fuse text, vision, sound, and motion—turning imagined ideas
+            into living experiences through dynamic media synthesis.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 5: MACHINE-AS-MUSE -->
+      <section class="vision-section center-glow" data-aos="fade-up">
+        <div class="content">
+          <h2>5. Machine-as-Muse</h2>
+          <p>
+            Artists now co-create with AI — sparking ideas beyond the limits of
+            speed, scale, or imagination. Machines aren't just tools, but
+            catalysts.
+          </p>
+        </div>
+        <div class="visual wide">
+          <img src="{% static "./media/vision5.jpg" %}"/>
+        </div>
+      </section>
+
+      <!-- SECTION 6: EMOTIONAL ENGINES -->
+      <section class="vision-bubble" data-aos="fade-left">
+        <div class="bubble-content">
+          <h2>6. Emotional Engines</h2>
+          <p>
+            Emotions like joy, melancholy, or awe are now translatable. AI
+            interprets them into art, sound, or motion—giving form to feelings.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 7: NARRATIVE BUILDERS -->
+      <section class="horizontal-scroll-section" data-aos="fade-up">
+        <h2 class="scroll-title">7. Narrative Builders</h2>
+        <div class="scroll-track">
+          <div class="scroll-card">Stories</div>
+          <div class="scroll-card">Worlds</div>
+          <div class="scroll-card">Levels</div>
+          <div class="scroll-card">Fiction</div>
+          <div class="scroll-card">Lore</div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: SYMBIOTIC DESIGN -->
+      <section class="vision-section alt-dark" data-aos="fade-right">
+        <div class="content">
+          <h2>8. Symbiotic Design</h2>
+          <p>
+            The design process becomes a duet — you sketch, AI suggests; you
+            revise, it evolves. Together you build the impossible.
+          </p>
+        </div>
+        <div class="visual">
+          <img src="{% static "./media/vision8.jpg" %}"/>
+        </div>
+      </section>
+
+      <!-- SECTION 9: SYNTHETIC IMAGINATION -->
+      <section class="vision-glass-banner" data-aos="flip-left">
+        <h2>9. Synthetic Imagination</h2>
+        <p>
+          AI doesn’t replicate — it creates. It draws from vast data to generate
+          styles, aesthetics, and forms never seen by humans before.
+        </p>
+        <img src="{% static "./media/vision9.jpg" %}"/>
+      </section>
+
+      <!-- SECTION 10: FABRICATING REALITY -->
+      <section class="vision-final" data-aos="zoom-in-up">
+        <div class="overlay">
+          <h2>10. Fabricating Reality</h2>
+          <p>
+            With generative AI, anyone can now fabricate believable digital
+            realities. A new era of worldbuilding is born — from the soul
+            outward.
+          </p>
+        </div>
+        <img src="{% static "./media/vision10.jpg" %}"/>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>“The unseen is now buildable.”</p>
+      <p>© 2025 AI Beyond Sight · Transforming Dreams into Digital Realities</p>
+    </footer>
+
+    <!-- JS Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static './js/script.js' %}"></script>
+  </body>
+</html>
