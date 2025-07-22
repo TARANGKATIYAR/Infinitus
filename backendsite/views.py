@@ -31,6 +31,8 @@ def submit_dream(request):
     Dream.objects.create(title=title, name=name, description=description)
     return JsonResponse({'status': 'success'})
 
+def genai(request):
+    return render(request, "genai.html")
 
 def vision(request):
     return render(request, "vision.html")

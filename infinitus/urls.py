@@ -27,5 +27,6 @@ urlpatterns = [
     path('submit', views.submit_dream, name='submit_dream'),
     path('padlet', views.padlet, name="padlet"),
     path('vision', views.vision, name="vision"),
+    path("gen-ai", views.genai, name="genai")
     # path('', views.home, name="home"),
 ]
