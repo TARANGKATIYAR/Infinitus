@@ -10,7 +10,6 @@
       type="image/x-icon"
       href="{% static './media/logo.png' %}"
     />
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,21 +21,16 @@
       rel="stylesheet"
     />
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static './css/arvr.css' %}" />
   </head>
   <body>
-    <!-- 🔷 NAVBAR -->
     <nav class="navbar">
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -45,7 +39,6 @@
       </ul>
     </nav>
 
-    <!-- 🌌 HERO SECTION -->
     <header class="hero-section">
       <div class="hero-content" data-aos="zoom-in">
         <h1>AI Beyond Sight</h1>
@@ -54,7 +47,6 @@
       </div>
     </header>
 
-    <!-- 🧠 AR SECTION START -->
     <section class="section-divider" id="ar-section">
       <h2 data-aos="fade-up">Concerns of AI</h2>
     </section>
@@ -108,7 +100,7 @@
 
     <section class="ar-block" data-aos="flip-up">
       <div class="ar-image">
-       <img src="{% static "./media/Concerns3.jpg" %}"/>
+        <img src="{% static "./media/Concerns3.jpg" %}"/>
       </div>
       <div class="ar-text">
         <h3>Deepfake Abuse</h3>
@@ -143,7 +135,7 @@
 
     <section class="ar-block" data-aos="fade-up-right">
       <div class="ar-image">
-       <img src="{% static "./media/Concerns5.jpg" %}"/>
+        <img src="{% static "./media/Concerns5.jpg" %}"/>
       </div>
       <div class="ar-text">
         <h3>Consent in Creative Use</h3>
@@ -179,7 +171,6 @@
       </div>
     </section>
 
-    <!-- 🔚 FOOTER -->
     <footer class="footer">
       <p>© 2025 AI Beyond Sight · Dream it. See it. Live it.</p>
       <p
@@ -189,7 +180,6 @@
       </p>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 1200, once: true });

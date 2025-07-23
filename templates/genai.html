@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Generative AI: Reimagining Reality Through Intelligence</title>
 
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400&display=swap"
       rel="stylesheet"
@@ -15,7 +14,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,8 +25,7 @@
       rel="stylesheet"
     />
 
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
 
     <link href="{% static "./css/genai.css" %}" rel="stylesheet" />
   </head>
@@ -38,9 +35,7 @@
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -48,7 +43,6 @@
         <li><a href="{% url 'padlet' %}">Padlet</a></li>
       </ul>
     </nav>
-    <!-- Intro -->
     <section
       id="intro"
       aria-label="Introduction to Generative AI"
@@ -73,10 +67,8 @@
         </p>
       </div>
       <div class="image type-image">
-        <img
-          src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80"
-          alt="Abstract digital AI creative artwork"
-        />
+        <img src="{% static "./media/genai/landing.avif" %}" alt="Abstract
+        digital AI creative artwork" />
       </div>
     </section>
 
@@ -96,10 +88,8 @@
         >
           <div class="year">2014</div>
           <h3>GANs Introduced</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=GANs"
-            alt="Generative Adversarial Networks illustration"
-          />
+          <img src="{% static "./media/genai/GANs.jpg" %}" alt="Generative
+          Adversarial Networks illustration" />
           <p>
             Generative Adversarial Networks enabled machines to create realistic
             images and data by pitting two neural networks against each other.
@@ -113,15 +103,15 @@
           tabindex="0"
           role="listitem"
         >
-          <div class="year">2018</div>
-          <h3>GPT-1</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=GPT-1"
-            alt="GPT-1 text generation model"
-          />
+          <div class="year">2017</div>
+          <h3>Transformer Architecture</h3>
+          <img src="{% static "./media/genai/transformer.jpg" %}" alt="GPT-1
+          text generation model" />
           <p>
-            OpenAI launched GPT-1, pioneering the transformer-based language
-            model architecture.
+            "Attention Is All You Need" (Vaswani et al.), Introduced the
+            transformer, allowing models to scale massively and understand
+            long-range dependencies in data. Became the architecture behind all
+            major LLMs
           </p>
         </article>
 
@@ -133,14 +123,13 @@
           role="listitem"
         >
           <div class="year">2020</div>
-          <h3>GPT-3</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=GPT-3"
-            alt="GPT-3 advanced language model"
-          />
+          <h3>Large Language Models</h3>
+          <img src="{% static "./media/genai/LLM.jpg" %}" alt="GPT-3 advanced
+          language model" />
           <p>
-            GPT-3 scaled language understanding and generation with 175 billion
-            parameters, revolutionizing text synthesis.
+            Proved that large-scale unsupervised training could lead to
+            coherent, context-aware text generation. Brought gen-AI to the
+            mainstream: content writing, coding, chatbots, assistants.
           </p>
         </article>
 
@@ -151,15 +140,14 @@
           tabindex="0"
           role="listitem"
         >
-          <div class="year">2022</div>
-          <h3>Stable Diffusion & Midjourney</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=Stable+Diffusion"
-            alt="Stable Diffusion AI art generation"
-          />
+          <div class="year">2021-22</div>
+          <h3>Diffusion Models for Image-Gen</h3>
+          <img src="{% static "./media/genai/diffusion.jpg" %}" alt="Stable
+          Diffusion AI art generation" />
           <p>
-            These models democratized AI art creation with open-source and
-            accessible image synthesis tools.
+            Replaced GANs for many tasks with more stable, controllable models
+            that generate high-fidelity, creative images from text. AI-powered
+            art tools changed the creative industry.
           </p>
         </article>
 
@@ -171,14 +159,13 @@
           role="listitem"
         >
           <div class="year">2023</div>
-          <h3>ChatGPT & DALL·E 2</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=ChatGPT+DALL·E+2"
-            alt="ChatGPT and DALL·E 2 AI models"
-          />
+          <h3>Multimodal Generative AI</h3>
+          <img src="{% static "./media/genai/multimodal.jpg" %}" alt="ChatGPT
+          and DALL·E 2 AI models" />
           <p>
-            ChatGPT brought conversational AI mainstream; DALL·E 2 made
-            text-to-image art generation stunningly realistic.
+            AI became capable of understanding and creating across multiple
+            formats, not just text or images. Applications in document analysis,
+            vision-language tasks, virtual assistants, and education.
           </p>
         </article>
 
@@ -190,14 +177,13 @@
           role="listitem"
         >
           <div class="year">2025</div>
-          <h3>Claude 3.5, Gemini 1.5, Sora</h3>
-          <img
-            src="https://via.placeholder.com/280x140?text=Claude+Gemini+Sora"
-            alt="Latest generative AI models"
-          />
+          <h3>Agentic & Tool-Using AI</h3>
+          <img src="{% static "./media/genai/agentic.jpg" %}" alt="Latest
+          generative AI models" />
           <p>
-            The latest wave of AI, blending reasoning, creativity, and
-            multimodal capabilities with unprecedented power and accessibility.
+            Models evolved from just generators to autonomous agents — capable
+            of doing tasks like web browsing, file editing, coding, and
+            decision-making.
           </p>
         </article>
       </div>
@@ -205,15 +191,14 @@
 
     <div class="section-divider" aria-hidden="true"></div>
 
-    <!-- Types of Generative AI -->
     <section id="types" aria-label="Types of Generative AI">
       <h2 class="center-text" data-aos="fade-up">Types of Generative AI</h2>
       <article class="type-item" data-aos="fade-right" tabindex="0">
         <div class="type-image">
-          <img
-            src="https://via.placeholder.com/480x300?text=Text+Generation"
-            alt="Text generation AI example"
-          />
+          <video width="600" autoplay muted>
+            <source src="{% static "media/genai/textai.mp4" %}" type="video/mp4"
+            />
+          </video>
         </div>
         <div class="type-content">
           <h3>📝 Text Generation</h3>
@@ -227,10 +212,8 @@
 
       <article class="type-item" data-aos="fade-right" tabindex="0">
         <div class="type-image">
-          <img
-            src="https://via.placeholder.com/480x300?text=Image+Generation"
-            alt="AI generated image example"
-          />
+          <img src="{% static "media/genai/imageai.jpg" %}" alt="AI generated
+          image example" />
         </div>
         <div class="type-content">
           <h3>🖼️ Image Generation</h3>
@@ -253,10 +236,10 @@
           </p>
         </div>
         <div class="type-image">
-          <img
-            src="https://via.placeholder.com/480x300?text=Video+Generation"
-            alt="AI generated video example"
-          />
+          <video width="600" autoplay muted>
+            <source src="{% static "media/genai/videoai.mp4" %}"
+            type="video/mp4" />
+          </video>
         </div>
       </article>
 
@@ -270,19 +253,20 @@
           </p>
         </div>
         <div class="type-image">
-          <img
-            src="https://via.placeholder.com/480x300?text=Audio+Generation"
-            alt="AI audio generation"
-          />
+          <audio style="width: 500px" controls>
+            <source src="{% static "media/genai/soundai.mp3" %}"
+            type="audio/mpeg" /> Your browser does not support the audio
+            element.
+          </audio>
         </div>
       </article>
 
       <article class="type-item" data-aos="fade-right" tabindex="0">
         <div class="type-image">
-          <img
-            src="https://via.placeholder.com/480x300?text=Code+Generation"
-            alt="AI code generation"
-          />
+          <video width="600" autoplay muted>
+            <source src="{% static "media/genai/codeai.mp4" %}" type="video/mp4"
+            />
+          </video>
         </div>
         <div class="type-content">
           <h3>💻 Code Generation</h3>
@@ -297,7 +281,6 @@
 
     <div class="section-divider" aria-hidden="true"></div>
 
-    <!-- Popular Tools -->
     <section
       id="tools"
       aria-label="Popular Generative AI Tools"
@@ -306,9 +289,7 @@
       <h2 class="center-text">Popular Tools in Generative AI</h2>
       <div class="tools-grid">
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"
-            alt="ChatGPT Logo"
+          <img src="{% static "media/genai/chatgpt.webp" %}" alt="ChatGPT Logo"
           />
           <h4>ChatGPT</h4>
           <p>
@@ -318,7 +299,7 @@
         </article>
         <article class="tool-card" tabindex="0">
           <img
-            src="https://cdn.midjourney.com/logo.png"
+            src="https://avatars.githubusercontent.com/u/61396273?s=280&v=4"
             alt="Midjourney Logo"
           />
           <h4>Midjourney</h4>
@@ -327,66 +308,48 @@
           </p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Claude_logo.svg"
-            alt="Claude Logo"
-          />
+          <img src="{% static "media/genai/claude.webp" %}" alt="Claude Logo" />
           <h4>Claude</h4>
           <p>Anthropic’s AI assistant focusing on safe and helpful dialogue.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://via.placeholder.com/80x80?text=Sora"
-            alt="Sora AI Logo"
+          <img src="{% static "media/genai/deepmind.jpg" %}" alt="Sora AI Logo"
           />
-          <h4>Sora</h4>
+          <h4>Deepmind</h4>
           <p>AI-powered video and multimedia generation platform.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://runwayml.com/assets/logo.png"
-            alt="Runway ML Logo"
+          <img src="{% static "media/genai/runway.png" %}" alt="Runway ML Logo"
           />
           <h4>Runway ML</h4>
           <p>Creative tools enabling AI-powered video and image editing.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://elevenlabs.io/images/logo.svg"
-            alt="ElevenLabs Logo"
-          />
+          <img src="{% static "media/genai/elevenlabs.jpeg" %}" alt="ElevenLabs
+          Logo" />
           <h4>ElevenLabs</h4>
           <p>Advanced AI for realistic text-to-speech audio synthesis.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-            alt="GitHub Copilot Logo"
-          />
+          <img src="{% static "media/genai/copilot.png" %}" alt="GitHub Copilot
+          Logo" />
           <h4>GitHub Copilot</h4>
           <p>AI assistant for code suggestions and completion.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://jasper.ai/images/jasper-logo.svg"
-            alt="Jasper Logo"
-          />
+          <img src="{% static "media/genai/jasper.png" %}" alt="Jasper Logo" />
           <h4>Jasper</h4>
           <p>AI content platform for marketing, blogging, and writing.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://via.placeholder.com/80x80?text=Synthesia"
-            alt="Synthesia Logo"
-          />
+          <img src="{% static "media/genai/perplexity.png" %}" alt="Synthesia
+          Logo" />
           <h4>Synthesia</h4>
           <p>AI video generation for corporate and training content.</p>
         </article>
         <article class="tool-card" tabindex="0">
-          <img
-            src="https://via.placeholder.com/80x80?text=Leonardo+AI"
-            alt="Leonardo AI Logo"
-          />
+          <img src="{% static "media/genai/leonardo.jpg" %}" alt="Leonardo AI
+          Logo" />
           <h4>Leonardo AI</h4>
           <p>Creative AI tools for image generation and art creation.</p>
         </article>
@@ -395,7 +358,6 @@
 
     <div class="section-divider" aria-hidden="true"></div>
 
-    <!-- Companies & Leaders -->
     <section
       id="leaders"
       aria-label="Top Companies and Leaders Investing in Generative AI"
@@ -404,85 +366,71 @@
       <h2 class="center-text">Top Companies & Leaders Investing in Gen AI</h2>
       <div class="leader-grid">
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4f/OpenAI_Logo.svg"
-            alt="OpenAI Logo"
-          />
-          <h4>OpenAI</h4>
-          <p>Led by Sam Altman, pioneering transformative AI models.</p>
+          <img src="{% static "media/genai/sam.webp" %}" alt="OpenAI Logo" />
+          <h4>
+            Sam <br />
+            Altman
+          </h4>
+          <p>CEO of OpenAI</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/4/44/Google_DeepMind_Logo.svg"
-            alt="Google DeepMind Logo"
-          />
-          <h4>Google DeepMind</h4>
-          <p>Demis Hassabis’ team pushing AI boundaries in research.</p>
+          <img src="{% static "media/genai/demis.webp" %}" alt="Google DeepMind
+          Logo" />
+          <h4>Demis Hassabis</h4>
+          <p>CEO of DeepMind (Google)</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/8/84/Meta_Logo.svg"
-            alt="Meta Logo"
-          />
-          <h4>Meta</h4>
-          <p>Mark Zuckerberg driving AI integration into social platforms.</p>
+          <img src="{% static "media/genai/mark.pjpeg" %}" alt="Meta Logo" />
+          <h4>Mark Zuckerberg</h4>
+          <p>Founder & CEO of Meta</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/5/51/NVIDIA_logo.svg"
-            alt="NVIDIA Logo"
-          />
-          <h4>NVIDIA</h4>
-          <p>Jensen Huang's company powers AI hardware innovation.</p>
+          <img src="{% static "media/genai/jensen.webp" %}" alt="NVIDIA Logo" />
+          <h4>Jensen Huang</h4>
+          <p>Founder & CEO of NVIDIA</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
-            alt="Microsoft Logo"
+          <img src="{% static "media/genai/satya.webp" %}" alt="Microsoft Logo"
           />
-          <h4>Microsoft</h4>
-          <p>
-            Satya Nadella leading AI integration with cloud and productivity.
-          </p>
+          <h4>Satya Nadella</h4>
+          <p>Founder & CEO of Microsoft</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-            alt="Amazon Logo"
-          />
-          <h4>Amazon</h4>
-          <p>Andy Jassy advancing AI for e-commerce and cloud services.</p>
+          <img src="{% static "media/genai/jeff.webp" %}" alt="Amazon Logo" />
+          <h4>Jeff Bezos</h4>
+          <p>Founder of Amazon</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img src="https://anthropic.com/favicon.ico" alt="Anthropic Logo" />
-          <h4>Anthropic</h4>
-          <p>Dario Amodei's company focusing on safe AI assistants.</p>
+          <img src="{% static "media/genai/dario.jpg" %}" alt="Anthropic Logo"
+          />
+          <h4>Dario Amodei</h4>
+          <p>CEO of Anthropic</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Adobe_Corporate_Logo.png"
-            alt="Adobe Logo"
-          />
-          <h4>Adobe</h4>
-          <p>Shantanu Narayen integrating AI into creative software.</p>
+          <img src="{% static "media/genai/shantanu.png" %}" alt="Adobe Logo" />
+          <h4>Shantanu Narayen</h4>
+          <p>CEO of Adobe</p>
         </article>
 
         <article class="leader-card" tabindex="0">
-          <img
-            src="https://stability.ai/assets/logo.svg"
-            alt="Stability AI Logo"
-          />
-          <h4>Stability AI</h4>
-          <p>
-            Emad Mostaque’s company behind Stable Diffusion and open AI tools.
-          </p>
+          <img src="{% static "media/genai/elon.webp" %}" alt="Stability AI
+          Logo" />
+          <h4>Elon Musk</h4>
+          <p>Involved in X.ai, Tesla, SpaceX, Neuralink</p>
+        </article>
+
+        <article class="leader-card" tabindex="0">
+          <img src="{% static "media/genai/david.webp" %}" alt="Stability AI
+          Logo" />
+          <h4>David Holz</h4>
+          <p>Founder and CEO of Midjourney</p>
         </article>
       </div>
     </section>
@@ -490,15 +438,22 @@
     <!-- CTA -->
     <section id="cta" aria-label="Call to Action" data-aos="zoom-in">
       <h2>
-        Generative AI is not just a tool — it’s the imagination engine of the
+        Generative AI is not just a tool — it's the imagination engine of the
         future.
       </h2>
       <button type="button" aria-label="Explore more about Generative AI">
         Explore More
       </button>
     </section>
+    <footer class="footer">
+      <p>© 2025 AI Beyond Sight · Dream it. See it. Live it.</p>
+      <p
+        style="font-style: italic; color: var(--neon-pink); margin-top: 0.5rem"
+      >
+        “Immersion is no longer a luxury — it's the language of the future.”
+      </p>
+    </footer>
 
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({

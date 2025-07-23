@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{% static './css/analyticalai.css' %}" />
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
     <link
       rel="icon"
       type="image/x-icon"
@@ -24,14 +24,11 @@
     />
   </head>
   <body>
-    <!-- 🔷 NAVBAR -->
     <nav class="navbar">
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -39,17 +36,13 @@
         <li><a href="{% url 'padlet' %}">Padlet</a></li>
       </ul>
     </nav>
-
-    <!-- === HERO SECTION === -->
     <header class="hero-section">
       <div class="hero-content" data-aos="zoom-in">
         <h1>AI Beyond Sight</h1>
         <p>Transforming Dreams Into Digital Realities</p>
-        <a href="#ar-section" class="cta-btn">Explore AR & VR</a>
+        <a href="#ar-section" class="cta-btn">Explore Analytical AI</a>
       </div>
     </header>
-
-    <!-- === SECTION 1: What is Analytical AI === -->
     <section class="section two-col" id="section1">
       <div class="text" data-aos="fade-right">
         <h2>What is Analytical AI?</h2>
@@ -61,11 +54,9 @@
         </p>
       </div>
       <div class="image" data-aos="zoom-in">
-       <img src="{% static "./media/ai1.jpg" %}"/>
+        <img src="{% static "./media/ai1.jpg" %}"/>
       </div>
     </section>
-
-    <!-- === SECTION 2: Invisible Inputs AI Reads === -->
     <section class="section grid-tiles" data-aos="fade-up">
       <h2>The Invisible Inputs AI Reads</h2>
       <div class="tiles">
@@ -102,10 +93,21 @@
             AI compares your digital fingerprint to others with shared patterns.
           </p>
         </div>
+        <div class="tile" data-aos="zoom-in">
+          <h3>Micro-Hesitations</h3>
+          <p>
+            Tiny delays before clicking or responding can indicate uncertainty.
+          </p>
+        </div>
+        <div class="tile" data-aos="zoom-in">
+          <h3>Scroll Reversals</h3>
+          <p>
+            When you scroll back up, AI infers that something caught your
+            attention
+          </p>
+        </div>
       </div>
     </section>
-
-    <!-- === SECTION 3: Behavioral Fingerprint === -->
     <section class="section wide" data-aos="fade-up">
       <div class="text centered">
         <h2>Your Behavioral Fingerprint</h2>
@@ -120,15 +122,8 @@
         <img src="{% static "./media/ai2.jpg" %}"/>
       </div>
     </section>
-
-    <!-- === SECTIONS 4–13: Real-World Apps === -->
-    <!-- Each app section has alternating layout -->
-
-    <!-- Netflix -->
     <section class="section two-col dark" data-aos="fade-right">
-      <div class="image">
-        <img src="{% static "./media/ai3.jpg" %}"/>
-      </div>
+      <div class="image"><img src="{% static "./media/ai3.jpg" %}"/></div>
       <div class="text">
         <h2>Netflix: Predictive Storytelling</h2>
         <ul>
@@ -138,8 +133,6 @@
         </ul>
       </div>
     </section>
-
-    <!-- YouTube -->
     <section class="section two-col" data-aos="fade-left">
       <div class="text">
         <h2>YouTube: Mood Tracking Through Views</h2>
@@ -151,16 +144,10 @@
           <li>Refines recommendations based on micro-mood shifts.</li>
         </ul>
       </div>
-      <div class="image">
-       <img src="{% static "./media/ai4.jpg" %}"/>
-      </div>
+      <div class="image"><img src="{% static "./media/ai4.jpg" %}"/></div>
     </section>
-
-    <!-- Amazon -->
     <section class="section two-col dark" data-aos="fade-right">
-      <div class="image">
-        <img src="{% static "./media/ai5.jpg" %}"/>
-      </div>
+      <div class="image"><img src="{% static "./media/ai5.jpg" %}"/></div>
       <div class="text">
         <h2>Amazon: Impulse vs. Intent</h2>
         <ul>
@@ -175,8 +162,6 @@
         </ul>
       </div>
     </section>
-
-    <!-- TikTok -->
     <section class="section two-col" data-aos="fade-left">
       <div class="text">
         <h2>TikTok: Emotional Loops</h2>
@@ -191,16 +176,10 @@
           </li>
         </ul>
       </div>
-      <div class="image">
-       <img src="{% static "./media/ai6.jpg" %}"/>
-      </div>
+      <div class="image"><img src="{% static "./media/ai6.jpg" %}"/></div>
     </section>
-
-    <!-- Spotify -->
     <section class="section two-col dark" data-aos="fade-right">
-      <div class="image">
-        <img src="{% static "./media/ai7.jpg" %}"/>
-      </div>
+      <div class="image"><img src="{% static "./media/ai7.jpg" %}"/></div>
       <div class="text">
         <h2>Spotify: Sound of Self</h2>
         <ul>
@@ -212,11 +191,6 @@
         </ul>
       </div>
     </section>
-
-    <!-- Instagram, Coursera, Smart Home, etc... -->
-    <!-- Add more similar blocks for each real-world app following this format -->
-
-    <!-- === SECTION: Mirror of Intent === -->
     <section class="section mirror" data-aos="fade-up">
       <div class="mirror-glass">
         <h2>Mirror of Intent</h2>
@@ -227,16 +201,12 @@
         </p>
       </div>
     </section>
-
-    <!-- === FOOTER === -->
     <footer class="footer">
       <p>© 2025 AI Beyond Sight · Dream it. Decode it. Understand it.</p>
       <p class="footer-quote">
         “The deepest truths hide in the smallest scrolls.”
       </p>
     </footer>
-
-    <!-- === SCRIPTS === -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{% static './js/analyticalai.js' %}"></script>
   </body>

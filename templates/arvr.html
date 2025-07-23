@@ -10,7 +10,6 @@
       type="image/x-icon"
       href="{% static './media/logo.png' %}"
     />
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,21 +21,16 @@
       rel="stylesheet"
     />
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static './css/arvr.css' %}" />
   </head>
   <body>
-    <!-- 🔷 NAVBAR -->
     <nav class="navbar">
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -45,7 +39,6 @@
       </ul>
     </nav>
 
-    <!-- 🌌 HERO SECTION -->
     <header class="hero-section">
       <div class="hero-content" data-aos="zoom-in">
         <h1>AI Beyond Sight</h1>
@@ -54,15 +47,12 @@
       </div>
     </header>
 
-    <!-- 🧠 AR SECTION START -->
     <section class="section-divider" id="ar-section">
       <h2 data-aos="fade-up">Augmented Reality Applications</h2>
     </section>
 
     <section class="ar-block" data-aos="fade-right">
-      <div class="ar-image">
-        <img src="{% static "./media/ar1.jpg" %}"/>
-      </div>
+      <div class="ar-image"><img src="{% static "./media/ar1.jpg" %}"/></div>
       <div class="ar-text">
         <h3>Real-Time Object Recognition</h3>
         <br />
@@ -87,9 +77,7 @@
     </section>
 
     <section class="ar-block reverse" data-aos="fade-left">
-      <div class="ar-image">
-       <img src="{% static "./media/ar2.jpg" %}"/>
-      </div>
+      <div class="ar-image"><img src="{% static "./media/ar2.jpg" %}"/></div>
       <div class="ar-text">
         <h3>Environment Mapping & Depth Estimation</h3>
         <br />
@@ -114,9 +102,7 @@
     </section>
 
     <section class="ar-block" data-aos="flip-up">
-      <div class="ar-image">
-        <img src="{% static "./media/ar3.jpg" %}"/>
-      </div>
+      <div class="ar-image"><img src="{% static "./media/ar3.jpg" %}"/></div>
       <div class="ar-text">
         <h3>Smart AR Assistants</h3>
         <ol>
@@ -140,9 +126,7 @@
     </section>
 
     <section class="ar-block reverse" data-aos="zoom-in-up">
-      <div class="ar-image">
-        <img src="{% static "./media/ar4.jpg" %}"/>
-      </div>
+      <div class="ar-image"><img src="{% static "./media/ar4.jpg" %}"/></div>
       <div class="ar-text">
         <h3>AI-Powered AR Translation</h3>
         <ol>
@@ -167,9 +151,7 @@
     </section>
 
     <section class="ar-block" data-aos="fade-up-right">
-      <div class="ar-image">
-        <img src="{% static "./media/ar5.jpg" %}"/>
-      </div>
+      <div class="ar-image"><img src="{% static "./media/ar5.jpg" %}"/></div>
       <div class="ar-text">
         <h3>Gesture & Action Recognition</h3>
         <ol>
@@ -193,15 +175,12 @@
       </div>
     </section>
 
-    <!-- 💜 VR SECTION START -->
     <section class="section-divider vr-divider" id="vr-section">
       <h2 data-aos="fade-up">Virtual Reality Applications</h2>
     </section>
 
     <section class="vr-block" data-aos="fade-left">
-      <div class="vr-image">
-       <img src="{% static "./media/vr1.jpg" %}"/>
-      </div>
+      <div class="vr-image"><img src="{% static "./media/vr1.jpg" %}"/></div>
       <div class="vr-text">
         <h3>AI-Driven World Generation</h3>
         <ol>
@@ -226,9 +205,7 @@
     </section>
 
     <section class="vr-block reverse" data-aos="fade-right">
-      <div class="vr-image">
-        <img src="{% static "./media/vr2.jpg" %}"/>
-      </div>
+      <div class="vr-image"><img src="{% static "./media/vr2.jpg" %}"/></div>
       <div class="vr-text">
         <h3>Lifelike Virtual Characters (AI NPCs)</h3>
         <ol>
@@ -252,9 +229,7 @@
     </section>
 
     <section class="vr-block" data-aos="flip-left">
-      <div class="vr-image">
-        <img src="{% static "./media/vr3.jpg" %}"/>
-      </div>
+      <div class="vr-image"><img src="{% static "./media/vr3.jpg" %}"/></div>
       <div class="vr-text">
         <h3>Emotionally Aware Interactions</h3>
         <ol>
@@ -279,9 +254,7 @@
     </section>
 
     <section class="vr-block reverse" data-aos="zoom-in-up">
-      <div class="vr-image">
-        <img src="{% static "./media/vr4.jpg" %}"/>
-      </div>
+      <div class="vr-image"><img src="{% static "./media/vr4.jpg" %}"/></div>
       <div class="vr-text">
         <h3>Adaptive Learning & Simulation</h3>
         <ol>
@@ -305,9 +278,7 @@
     </section>
 
     <section class="vr-block" data-aos="fade-up-left">
-      <div class="vr-image">
-       <img src="{% static "./media/vr5.jpg" %}"/>
-      </div>
+      <div class="vr-image"><img src="{% static "./media/vr5.jpg" %}"/></div>
       <div class="vr-text">
         <h3>Procedural Storytelling & Dialogue</h3>
         <ol>
@@ -330,7 +301,6 @@
       </div>
     </section>
 
-    <!-- 🔚 FOOTER -->
     <footer class="footer">
       <p>© 2025 AI Beyond Sight · Dream it. See it. Live it.</p>
       <p
@@ -340,7 +310,6 @@
       </p>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 1200, once: true });

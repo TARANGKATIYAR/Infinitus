@@ -5,9 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Padlet Wall of Dreams</title>
-    <link rel="icon" type="image/x-icon" href="{% static './media/logo.png' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static './media/logo.png' %}"
+    />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,16 +18,10 @@
       rel="stylesheet"
     />
 
-    <!-- AOS (Animate On Scroll) -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet" href="{% static './css/padlet.css' %}" />
 
-    <!-- CSRF token in cookies -->
     <script>
       document.cookie = "csrftoken={{ csrf_token }}";
     </script>
@@ -34,9 +31,7 @@
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -45,7 +40,6 @@
       </ul>
     </nav>
 
-    <!-- Header Section -->
     <br /><br />
     <header class="header-section" data-aos="fade-down">
       <h1 class="title">Padlet Wall of Dreams</h1>
@@ -53,12 +47,10 @@
         Where imagination meets collaboration — powered by AI.
       </p>
     </header>
-    <!-- Floating '+' Button to Open Modal -->
     <button id="openModalBtn" class="floating-add-btn" title="Add your dream">
       +
     </button>
 
-    <!-- Modal Popup Form -->
     <div id="modalOverlay" class="modal-overlay">
       <div class="modal">
         <button id="closeModalBtn" aria-label="Close modal" class="close-btn">
@@ -95,7 +87,6 @@
       </div>
     </div>
 
-    <!-- Wall of Posts -->
     <section class="post-wall" data-aos="fade-up">
       <div id="postGrid" class="post-grid">
         {% for dream in dreams %}
@@ -110,7 +101,6 @@
       </div>
     </section>
 
-    <!-- AOS & JS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
       AOS.init();
@@ -163,7 +153,6 @@
           return cookieValue;
         }
 
-        // Modal toggle logic
         document.getElementById("openModalBtn").onclick = () => {
           document.getElementById("modalOverlay").style.display = "flex";
         };

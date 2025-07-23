@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="{% static './css/aos.css' %}" />
     <link rel="stylesheet" href="{% static './css/vision.css' %}" />
     <link
       rel="icon"
@@ -24,14 +24,11 @@
     />
   </head>
   <body>
-    <!-- NAVBAR -->
     <nav class="navbar">
       <div class="logo">AI Beyond Sight</div>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
-        {% comment %}
-        <li><a href="{% url 'gen_ai' %}">Generative AI</a></li>
-        {% endcomment %}
+        <li><a href="{% url 'genai' %}">Generative AI</a></li>
         <li><a href="{% url 'arvr' %}">AR/VR</a></li>
         <li><a href="{% url 'analytic' %}">Analytical-AI</a></li>
         <li><a href="{% url 'vision' %}">Vision</a></li>
@@ -40,17 +37,15 @@
       </ul>
     </nav>
 
-    <!-- HERO SECTION -->
     <header class="hero-section">
       <div class="hero-content" data-aos="zoom-in">
         <h1>AI BEYOND SIGHT</h1>
         <p>Transforming Dreams Into Digital Realities</p>
-        <a href="#ar-section" class="cta-btn">Explore AR & VR</a>
+        <a href="#ar-section" class="cta-btn">Explore Vision</a>
       </div>
     </header>
 
     <main>
-      <!-- SECTION 1: MIND TO MATTER -->
       <section class="vision-section glass left" data-aos="fade-right">
         <div class="content">
           <h2>1. Mind to Matter</h2>
@@ -61,16 +56,14 @@
           </p>
         </div>
         <div class="visual tilt">
-            <img src="{% static "./media/vision1.jpg" %}"/>
+          <img src="{% static "./media/vision1.jpg" %}"/>
         </div>
       </section>
 
-      <!-- SVG Divider -->
       <svg class="section-divider" viewBox="0 0 1440 100">
         <path fill="#0d0d0d" d="M0,64L1440,0L1440,320L0,320Z"></path>
       </svg>
 
-      <!-- SECTION 2: WHISPER TO WORLD -->
       <section class="vision-section wave-banner" data-aos="fade-left">
         <div class="visual">
           <img src="{% static "./media/vision2.jpg" %}"/>
@@ -85,12 +78,8 @@
         </div>
       </section>
 
-      <!-- SECTION 3: PROMPT AS PAINTBRUSH -->
       <section class="vision-fullscreen" data-aos="zoom-in">
-        <img
-          src="{% static "./media/vision3.jpg" %}"
-          class="background-img"
-        />
+        <img src="{% static "./media/vision3.jpg" %}" class="background-img" />
         <div class="overlay-text">
           <h2>3. Prompt as Paintbrush</h2>
           <p>
@@ -100,10 +89,9 @@
         </div>
       </section>
 
-      <!-- SECTION 4: MULTISENSORY OUTPUTS -->
       <section class="vision-cluster" data-aos="fade-right">
         <div class="visual">
-         <img src="{% static "./media/vision4a.jpg" %}"/>
+          <img src="{% static "./media/vision4a.jpg" %}"/>
         </div>
         <div class="content">
           <h2>4. Multisensory Outputs</h2>
@@ -114,7 +102,6 @@
         </div>
       </section>
 
-      <!-- SECTION 5: MACHINE-AS-MUSE -->
       <section class="vision-section center-glow" data-aos="fade-up">
         <div class="content">
           <h2>5. Machine-as-Muse</h2>
@@ -129,7 +116,6 @@
         </div>
       </section>
 
-      <!-- SECTION 6: EMOTIONAL ENGINES -->
       <section class="vision-bubble" data-aos="fade-left">
         <div class="bubble-content">
           <h2>6. Emotional Engines</h2>
@@ -140,7 +126,6 @@
         </div>
       </section>
 
-      <!-- SECTION 7: NARRATIVE BUILDERS -->
       <section class="horizontal-scroll-section" data-aos="fade-up">
         <h2 class="scroll-title">7. Narrative Builders</h2>
         <div class="scroll-track">
@@ -152,7 +137,6 @@
         </div>
       </section>
 
-      <!-- SECTION 8: SYMBIOTIC DESIGN -->
       <section class="vision-section alt-dark" data-aos="fade-right">
         <div class="content">
           <h2>8. Symbiotic Design</h2>
@@ -166,7 +150,6 @@
         </div>
       </section>
 
-      <!-- SECTION 9: SYNTHETIC IMAGINATION -->
       <section class="vision-glass-banner" data-aos="flip-left">
         <h2>9. Synthetic Imagination</h2>
         <p>
@@ -176,7 +159,6 @@
         <img src="{% static "./media/vision9.jpg" %}"/>
       </section>
 
-      <!-- SECTION 10: FABRICATING REALITY -->
       <section class="vision-final" data-aos="zoom-in-up">
         <div class="overlay">
           <h2>10. Fabricating Reality</h2>
@@ -190,13 +172,15 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
-      <p>“The unseen is now buildable.”</p>
-      <p>© 2025 AI Beyond Sight · Transforming Dreams into Digital Realities</p>
+      <p>© 2025 AI Beyond Sight · Dream it. See it. Live it.</p>
+      <p
+        style="font-style: italic; color: var(--neon-pink); margin-top: 0.5rem"
+      >
+        “Immersion is no longer a luxury — it's the language of the future.”
+      </p>
     </footer>
 
-    <!-- JS Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{% static './js/script.js' %}"></script>
   </body>
