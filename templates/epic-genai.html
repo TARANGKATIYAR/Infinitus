@@ -1,0 +1,1951 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Generative AI: Reimagining Reality Through Intelligence - Experience the evolution of artificial intelligence"
+    />
+    <meta
+      name="keywords"
+      content="Generative AI, AI, Artificial Intelligence, Machine Learning, Deep Learning"
+    />
+    <meta name="author" content="AI Beyond Sight" />
+    <meta name="theme-color" content="#0a0118" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+
+    <title>
+      Generative AI: The Evolution of Intelligence | AI Beyond Sight
+    </title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Enhanced Typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+
+    <!-- Epic Timeline CSS -->
+    <style>
+      /* Fix undefined variables */
+      :root {
+        --text-primary: var(--neutral-50);
+        --text-secondary: var(--neutral-300);
+        --text-muted: var(--neutral-400);
+        --bg-primary: var(--primary-900);
+      }
+
+      /* Epic Timeline Styles */
+      .timeline-epic {
+        position: relative;
+        max-width: 1200px;
+        margin: 6rem auto;
+        padding: 4rem 2rem;
+      }
+
+      .timeline-epic::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          var(--accent-cyan) 10%,
+          var(--accent-purple) 30%,
+          var(--accent-pink) 70%,
+          var(--accent-purple) 90%,
+          transparent 100%
+        );
+        transform: translateX(-50%);
+        box-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-purple),
+          0 0 60px var(--accent-pink);
+        z-index: 0;
+        animation: timeline-pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes timeline-pulse {
+        0%,
+        100% {
+          opacity: 0.8;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .timeline-item-epic {
+        position: relative;
+        margin-bottom: 10rem;
+        display: flex;
+        align-items: center;
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.6s ease;
+        min-height: 300px;
+      }
+
+      .timeline-item-epic:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-item-epic:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .timeline-item-epic:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .timeline-item-epic:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .timeline-item-epic:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      .timeline-item-epic:nth-child(5) {
+        animation-delay: 1s;
+      }
+      .timeline-item-epic:nth-child(6) {
+        animation-delay: 1.2s;
+      }
+
+      @keyframes timeline-reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .timeline-content-epic {
+        width: 42%;
+        max-width: 500px;
+        padding: 2.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(139, 92, 246, 0.15);
+        border-radius: 20px;
+        position: relative;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.4),
+          0 0 60px rgba(139, 92, 246, 0.08);
+        margin: 0 3rem;
+      }
+
+      .timeline-content-epic::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-cyan),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .timeline-content-epic:hover {
+        transform: translateY(-8px) scale(1.02);
+        border-color: var(--accent-cyan);
+        box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6),
+          0 0 100px rgba(0, 245, 255, 0.2),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .timeline-content-epic:hover::before {
+        opacity: 1;
+      }
+
+      .timeline-year-epic {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        color: white;
+        padding: 1.2rem 2rem;
+        border-radius: 50px;
+        font-weight: 800;
+        font-size: 1.2rem;
+        z-index: 10;
+        box-shadow: 0 15px 30px -10px rgba(0, 245, 255, 0.3),
+          0 0 50px rgba(139, 92, 246, 0.2);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20px);
+        animation: year-glow 2s ease-in-out infinite;
+        min-width: 100px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .timeline-item-epic:nth-child(even) .timeline-year-epic {
+        background: linear-gradient(
+          135deg,
+          var(--accent-purple),
+          var(--accent-pink)
+        );
+        box-shadow: 0 15px 30px -10px rgba(139, 92, 246, 0.3),
+          0 0 50px rgba(236, 72, 153, 0.2);
+      }
+
+      @keyframes year-glow {
+        0%,
+        100% {
+          box-shadow: 0 15px 30px -10px rgba(0, 245, 255, 0.3),
+            0 0 50px rgba(139, 92, 246, 0.2);
+          transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+          box-shadow: 0 20px 40px -10px rgba(0, 245, 255, 0.5),
+            0 0 70px rgba(139, 92, 246, 0.4);
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+      }
+
+      .timeline-item-epic::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background: var(--accent-cyan);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+        box-shadow: 0 0 15px var(--accent-cyan), 0 0 30px var(--accent-cyan);
+        animation: dot-pulse 2s ease-in-out infinite;
+        border: 3px solid var(--primary-900);
+      }
+
+      .timeline-item-epic:nth-child(even)::before {
+        background: var(--accent-purple);
+        box-shadow: 0 0 15px var(--accent-purple), 0 0 30px var(--accent-purple);
+      }
+
+      @keyframes dot-pulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.8;
+        }
+      }
+
+      .timeline-image-epic {
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+        transition: transform 0.4s ease;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+      }
+
+      .timeline-content-epic:hover .timeline-image-epic {
+        transform: scale(1.05);
+      }
+
+      /* Epic Cards */
+      .epic-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        border-radius: 20px;
+        padding: 2.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .epic-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent-cyan),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .epic-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px -20px rgba(0, 245, 255, 0.2),
+          0 0 100px rgba(139, 92, 246, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-cyan);
+      }
+
+      .epic-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Scroll Animation for Timeline Items */
+      .timeline-item-epic {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: timeline-reveal 0.8s ease forwards;
+      }
+
+      .timeline-item-epic.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Enhanced visibility */
+      .section-badge span {
+        color: var(--accent-cyan);
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+      }
+
+      .section-title {
+        color: var(--neutral-50);
+        font-weight: 700;
+      }
+
+      .section-description {
+        color: var(--neutral-300);
+        font-weight: 300;
+      }
+
+      /* Mobile Timeline */
+      @media (max-width: 768px) {
+        .timeline-epic {
+          padding: 4rem 1rem;
+        }
+
+        .timeline-epic::before {
+          left: 2rem;
+        }
+
+        .timeline-item-epic,
+        .timeline-item-epic:nth-child(even) {
+          flex-direction: column;
+          margin-left: 4rem;
+          margin-bottom: 6rem;
+          align-items: flex-start;
+        }
+
+        .timeline-content-epic {
+          width: calc(100% - 4rem);
+          margin: 0;
+        }
+
+        .timeline-year-epic {
+          left: 2rem;
+          transform: translateY(-50%);
+          font-size: 1rem;
+          padding: 1rem 1.5rem;
+          min-width: 80px;
+        }
+
+        .timeline-item-epic::before {
+          left: 2rem;
+        }
+      }
+
+      /* Horizontal Domain Bars */
+      .domains-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .domain-bar {
+        display: flex;
+        align-items: stretch;
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(30px);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        min-height: 200px;
+      }
+
+      .domain-bar:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        border-color: var(--accent-cyan);
+      }
+
+      .domain-image {
+        flex: 0 0 60%;
+        min-height: 200px;
+        overflow: hidden;
+        border-radius: 16px 0 0 16px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+      }
+
+      .domain-image img,
+      .domain-image video {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transition: transform 0.4s ease;
+        border-radius: 0;
+      }
+
+      .domain-bar:hover .domain-image img,
+      .domain-bar:hover .domain-image video {
+        transform: scale(1.05);
+      }
+
+      .audio-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--accent-pink),
+          var(--accent-cyan)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .audio-icon {
+        font-size: 4rem;
+        color: white;
+      }
+
+      .domain-content {
+        flex: 0 0 40%;
+        padding: 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .domain-content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+      }
+
+      .domain-content p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+        font-weight: 300;
+        font-size: 1.1rem;
+      }
+
+      /* Mobile responsive for domain bars */
+      @media (max-width: 768px) {
+        .domain-bar {
+          flex-direction: column;
+          min-height: auto;
+        }
+
+        .domain-image {
+          flex: none;
+          width: 100%;
+          min-height: 200px;
+          height: auto;
+          border-radius: 16px 16px 0 0;
+        }
+
+        .domain-image img,
+        .domain-image video {
+          object-fit: contain;
+          object-position: center;
+          max-width: 100%;
+          max-height: 300px;
+        }
+
+        .domain-content {
+          padding: 1.5rem;
+        }
+
+        .domain-content h3 {
+          font-size: 1.5rem;
+        }
+
+        .domain-content p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Enhanced Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-container">
+        <a
+          href="{% url 'home' %}"
+          class="navbar-logo"
+          aria-label="AI Beyond Sight Home"
+        >
+          AI Beyond Sight
+        </a>
+
+        <ul class="navbar-nav" role="menubar">
+          <li role="none">
+            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
+              >Home</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'genai' %}"
+              class="navbar-link"
+              role="menuitem"
+              style="color: var(--accent-cyan)"
+              >Generative AI</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
+              >AR/VR</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
+              >Analytics</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
+              >Vision</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
+              >Concerns</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
+              >Padlet</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="navbar-toggle"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <header class="hero" id="hero">
+      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
+      <div class="section-container">
+        <div class="hero-content text-center">
+          <div class="hero-badge fade-in" style="animation-delay: 0.2s">
+            <span>✦ REVOLUTIONARY TECHNOLOGY ✦</span>
+          </div>
+
+          <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+            <span
+              style="
+                font-family: 'Inter', sans-serif;
+                font-size: clamp(3.5rem, 10vw, 7rem);
+                line-height: 1.1;
+                font-weight: 700;
+                background: linear-gradient(
+                  135deg,
+                  var(--text-primary),
+                  var(--accent-purple)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              "
+            >
+              AR/VR Revolution
+            </span>
+            <br />
+          </h1>
+
+          <div class="hero-actions fade-in" style="animation-delay: 0.8s">
+            <a href="#timeline" class="btn btn-primary">
+              <span>Explore Journey</span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                />
+              </svg>
+            </a>
+            <a href="#types" class="btn btn-secondary">
+              <span>Discover Capabilities</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="hero-scroll fade-in" style="animation-delay: 1s">
+        <div class="scroll-line"></div>
+        <div class="scroll-dot"></div>
+      </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section
+      class="section"
+      id="intro"
+      aria-label="Introduction to Generative AI"
+    >
+      <div class="section-container">
+        <div class="grid-2-col items-center">
+          <div class="fade-in">
+            <div class="section-badge">
+              <span>◆ REVOLUTIONARY INTELLIGENCE ◆</span>
+            </div>
+            <h2
+              class="section-title"
+              style="
+                font-size: clamp(3rem, 7vw, 5rem);
+                margin-bottom: 2rem;
+                background: linear-gradient(
+                  135deg,
+                  var(--text-primary),
+                  var(--accent-cyan)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              "
+            >
+              The Art of <br />Digital Creation
+            </h2>
+            <div class="content-luxury">
+              <p
+                class="text-body-xl"
+                style="
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                  margin-bottom: var(--space-8);
+                  line-height: 1.8;
+                  font-size: 1.3rem;
+                "
+              >
+                Generative AI represents the zenith of artificial intelligence
+                sophistication — a revolutionary technology that crafts new
+                realities from imagination, creating unprecedented content
+                across text, imagery, audio, and beyond.
+              </p>
+              <p
+                class="text-body-lg"
+                style="
+                  color: var(--text-muted);
+                  margin-bottom: var(--space-8);
+                  line-height: 1.7;
+                "
+              >
+                Unlike conventional AI systems confined to prediction and
+                classification, generative AI emerges as your ultimate creative
+                companion — an elite imagination engine that synthesizes
+                entirely new concepts and experiences.
+              </p>
+              <p
+                class="text-body-lg"
+                style="color: var(--text-muted); line-height: 1.7"
+              >
+                This represents the democratization of creativity at the highest
+                echelon, empowering visionaries to explore infinite
+                possibilities through the most sophisticated AI architecture
+                ever conceived.
+              </p>
+            </div>
+          </div>
+          <div class="fade-in">
+            <div class="card">
+              <img
+                src="{% static './media/genai/landing.avif' %}"
+                alt="AI artistic representation"
+                class="card-image"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Epic Timeline Section -->
+    <section
+      class="section"
+      id="timeline"
+      aria-label="Epic Evolution of Generative AI"
+    >
+      <div class="section-container">
+        <div class="section-header fade-in text-center">
+          <div class="section-badge">
+            <span>◆ HISTORICAL MASTERY ◆</span>
+          </div>
+          <h2
+            class="section-title"
+            style="
+              font-size: clamp(3rem, 7vw, 5rem);
+              margin-bottom: 1.5rem;
+              background: linear-gradient(
+                135deg,
+                var(--neutral-50),
+                var(--accent-purple)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Evolution of Excellence
+          </h2>
+          <p
+            class="section-description"
+            style="
+              max-width: 800px;
+              margin: 0 auto;
+              font-size: 1.2rem;
+              color: var(--neutral-300);
+              line-height: 1.7;
+            "
+          >
+            Witness the extraordinary milestones that forged the generative AI
+            landscape
+          </p>
+        </div>
+
+        <div class="timeline-epic">
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2014</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--neutral-50);
+                  font-weight: 700;
+                "
+              >
+                GANs: The Genesis
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/GANs.jpg' %}"
+                  alt="GANs representation"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--neutral-300);
+                  font-weight: 300;
+                "
+              >
+                The revolutionary birth of Generative Adversarial Networks,
+                where dual neural networks engage in sophisticated competition
+                to create unprecedented realism in machine-generated content.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2017</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                "
+              >
+                Transformer Revolution
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/transformer.jpg' %}"
+                  alt="Transformer architecture"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                "
+              >
+                "Attention Is All You Need" redefined intelligence architecture,
+                establishing the foundation for every language model through
+                revolutionary self-attention mechanisms.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2020</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                "
+              >
+                Large Language Mastery
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/LLM.jpg' %}"
+                  alt="LLM architecture"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                "
+              >
+                The emergence of sophisticated language models that transformed
+                unsupervised learning into coherent, contextually aware content
+                generation at unprecedented scale.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2021-22</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                "
+              >
+                Diffusion Excellence
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/diffusion.jpg' %}"
+                  alt="Diffusion models"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                "
+              >
+                Diffusion models revolutionized visual creation, delivering
+                unparalleled stability and control in high-fidelity artistic
+                generation, reshaping creative industries forever.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2023</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                "
+              >
+                Multimodal Supremacy
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/multimodal.jpg' %}"
+                  alt="Multimodal AI"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                "
+              >
+                Advanced models transcend single-modal limitations, seamlessly
+                integrating text, vision, and reasoning to create the most
+                sophisticated AI assistants ever conceived.
+              </p>
+            </div>
+          </article>
+
+          <article class="timeline-item-epic">
+            <div class="timeline-year-epic">2024</div>
+            <div class="timeline-content-epic">
+              <h3
+                style="
+                  font-size: 2.2rem;
+                  margin-bottom: 1.5rem;
+                  color: var(--text-primary);
+                  font-weight: 700;
+                "
+              >
+                Agentic Intelligence
+              </h3>
+              <div class="timeline-image mb-6">
+                <img
+                  src="{% static './media/genai/agentic.jpg' %}"
+                  alt="Agentic AI systems"
+                  loading="lazy"
+                  class="timeline-image-epic"
+                />
+              </div>
+              <p
+                style="
+                  font-size: 1.1rem;
+                  line-height: 1.7;
+                  color: var(--text-secondary);
+                  font-weight: 300;
+                "
+              >
+                The pinnacle of AI evolution: autonomous agents capable of
+                sophisticated planning, reasoning, and execution across complex
+                multi-dimensional task environments.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Types Section -->
+    <section class="section" id="types" aria-label="Types of Generative AI">
+      <div class="section-container">
+        <div class="section-header fade-in text-center">
+          <div class="section-badge">
+            <span>◆ CORE CAPABILITIES ◆</span>
+          </div>
+          <h2
+            class="section-title"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-pink)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Domains of Excellence
+          </h2>
+          <p class="section-description">
+            Explore the sophisticated realms where generative AI transcends
+            conventional boundaries
+          </p>
+        </div>
+        <div class="domain-bar animate-child">
+          <div class="domain-image">
+            <video autoplay muted loop>
+              <source
+                src="{% static 'media/genai/textai.mp4' %}"
+                type="video/mp4"
+              />
+            </video>
+          </div>
+          <div class="domain-content">
+            <h3>💬 Linguistic Mastery</h3>
+            <p>
+              Sophisticated language models like ChatGPT, Claude, and Gemini
+              deliver human-like eloquence for conversations, content creation,
+              and complex problem-solving.
+            </p>
+          </div>
+        </div>
+
+        <div class="domains-container">
+          <!-- Visual Artistry -->
+          <div class="domain-bar animate-child">
+            <div class="domain-image">
+              <img
+                src="{% static './media/genai/imageai.jpg' %}"
+                alt="AI image generation"
+                loading="lazy"
+              />
+            </div>
+            <div class="domain-content">
+              <h3>🎨 Visual Artistry</h3>
+              <p>
+                Elite text-to-image models like DALL-E, Midjourney, and Stable
+                Diffusion craft breathtaking visuals from imagination,
+                revolutionizing digital artistry and design.
+              </p>
+            </div>
+          </div>
+        </div>
+          <!-- Linguistic Mastery -->
+
+          <div class="domain-bar animate-child">
+            <div class="domain-image">
+              <video autoplay muted loop>
+                <source
+                  src="{% static 'media/genai/videoai.mp4' %}"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="domain-content">
+              <h3>💬 Linguistic Mastery</h3>
+              <p>
+                Sophisticated language models like ChatGPT, Claude, and Gemini
+                deliver human-like eloquence for conversations, content
+                creation, and complex problem-solving.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sonic Excellence -->
+          <div class="domain-bar animate-child">
+            <div class="domain-image">
+              <div class="audio-placeholder">
+                <span class="audio-icon">🎵</span>
+              </div>
+            </div>
+            <div class="domain-content">
+              <h3>🎵 Sonic Excellence</h3>
+              <p>
+                Premium audio synthesis through ElevenLabs, Suno, and Udio
+                creates natural speech and compositions, pioneering new
+                frontiers in audio experiences.
+              </p>
+              <div class="audio-container">
+                <audio
+                  controls
+                  style="width: 100%; border-radius: 8px; margin-top: 1rem"
+                >
+                  <source
+                    src="{% static 'media/genai/soundai.mp3' %}"
+                    type="audio/mpeg"
+                  />
+                  Your browser does not support audio experiences.
+                </audio>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Craftsmanship -->
+          <div class="domain-bar animate-child">
+            <div class="domain-image">
+              <video autoplay muted loop>
+                <source
+                  src="{% static 'media/genai/codeai.mp4' %}"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="domain-content">
+              <h3>💻 Code Craftsmanship</h3>
+              <p>
+                Elite development assistants like GitHub Copilot and
+                CodeWhisperer accelerate sophisticated software creation through
+                intelligent code generation and logic synthesis.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="section" id="tools" aria-label="Generative AI Tools">
+      <div class="section-container">
+        <div class="section-header fade-in text-center">
+          <div class="section-badge">
+            <span>◆ ELITE ARSENAL ◆</span>
+          </div>
+          <h2
+            class="section-title"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-cyan)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Premium Tool Ecosystem
+          </h2>
+          <p class="section-description">
+            Discover the sophisticated instruments that define the future of
+            artificial intelligence
+          </p>
+        </div>
+
+        <div class="grid-3-col stagger-children">
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/chatgpt.webp' %}"
+                alt="ChatGPT"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              ChatGPT
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              OpenAI's crown jewel for sophisticated conversational intelligence
+              and content mastery.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/claude.webp' %}"
+                alt="Claude"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Claude
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              Anthropic's premium assistant focused on helpful, harmless, and
+              honest interactions.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/copilot.png' %}"
+                alt="GitHub Copilot"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              GitHub Copilot
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              Elite AI pair programmer delivering sophisticated code suggestions
+              and development acceleration.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/midjourney.webp' %}"
+                alt="Midjourney"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Midjourney
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              Premium AI art generator creating stunning, imaginative visuals
+              from sophisticated prompts.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/leonardo.jpg' %}"
+                alt="Leonardo AI"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Leonardo AI
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              Advanced AI art platform for creating production-quality visual
+              assets.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.2);
+              "
+            >
+              <img
+                src="{% static 'media/genai/elevenlabs.jpeg' %}"
+                alt="ElevenLabs"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              ElevenLabs
+            </h4>
+            <p
+              style="
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-weight: 300;
+              "
+            >
+              Premium voice AI platform for realistic text-to-speech and
+              sophisticated voice cloning.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leaders Section -->
+    <section class="section" id="leaders" aria-label="AI Visionaries">
+      <div class="section-container">
+        <div class="section-header fade-in text-center">
+          <div class="section-badge">
+            <span>◆ VISIONARY LEADERS ◆</span>
+          </div>
+          <h2
+            class="section-title"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-purple)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Architects of Tomorrow
+          </h2>
+          <p class="section-description">
+            Meet the visionaries and organizations pioneering the generative AI
+            revolution
+          </p>
+        </div>
+
+        <div class="grid-3-col stagger-children">
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(0, 245, 255, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/jensen.webp' %}"
+                alt="Jensen Huang"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Jensen Huang
+            </h4>
+            <p
+              style="
+                color: var(--accent-cyan);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              CEO of NVIDIA
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Visionary architect of the GPU revolution powering AI computation
+              worldwide.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/sam.webp' %}"
+                alt="Sam Altman"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Sam Altman
+            </h4>
+            <p
+              style="
+                color: var(--accent-purple);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              CEO of OpenAI
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Leading the charge in developing safe, beneficial artificial
+              general intelligence.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(236, 72, 153, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/sundar.webp' %}"
+                alt="Sundar Pichai"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Sundar Pichai
+            </h4>
+            <p
+              style="
+                color: var(--accent-pink);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              CEO of Google & Alphabet
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Steering Google's AI-first transformation and democratizing AI
+              access globally.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(0, 245, 255, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/demis.webp' %}"
+                alt="Demis Hassabis"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Demis Hassabis
+            </h4>
+            <p
+              style="
+                color: var(--accent-cyan);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              CEO of Google DeepMind
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Pioneering breakthrough AI research and developing sophisticated
+              intelligence systems.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(139, 92, 246, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/mark.avif' %}"
+                alt="Mark Zuckerberg"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Mark Zuckerberg
+            </h4>
+            <p
+              style="
+                color: var(--accent-purple);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              CEO of Meta
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Building the metaverse through advanced AI and immersive
+              technology platforms.
+            </p>
+          </article>
+
+          <article class="epic-card animate-child text-center">
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                margin: 0 auto var(--space-4);
+                border-radius: 50%;
+                overflow: hidden;
+                border: 2px solid rgba(236, 72, 153, 0.3);
+              "
+            >
+              <img
+                src="{% static 'media/genai/elon.webp' %}"
+                alt="Elon Musk"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+            </div>
+            <h4
+              style="
+                font-size: 1.6rem;
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+                font-weight: 600;
+              "
+            >
+              Elon Musk
+            </h4>
+            <p
+              style="
+                color: var(--accent-pink);
+                font-weight: 500;
+                margin-bottom: 1rem;
+              "
+            >
+              Founder of X.ai, Tesla, SpaceX
+            </p>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.6;
+                font-weight: 300;
+                font-size: 0.95rem;
+              "
+            >
+              Advancing AI safety and integration across multiple revolutionary
+              technology sectors.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" id="cta" aria-label="Call to Action">
+      <div class="section-container">
+        <div class="cta-content fade-in text-center">
+          <h2
+            style="
+              font-size: clamp(2.5rem, 6vw, 4rem);
+              margin-bottom: 2rem;
+              line-height: 1.2;
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-cyan)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            Generative AI is not merely a tool —<br />
+            <span
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--accent-purple),
+                  var(--accent-pink)
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              "
+              >it's the imagination engine of tomorrow.</span
+            >
+          </h2>
+          <p
+            style="
+              font-size: 1.3rem;
+              color: var(--text-secondary);
+              margin-bottom: 3rem;
+              max-width: 700px;
+              margin-left: auto;
+              margin-right: auto;
+              line-height: 1.7;
+              font-weight: 300;
+            "
+          >
+            Join the frontier where creativity meets sophistication in the most
+            advanced AI ecosystem ever conceived.
+          </p>
+          <a
+            href="{% url 'home' %}"
+            class="btn btn-primary"
+            style="font-size: 1.1rem; padding: 1rem 3rem"
+          >
+            <span>Explore More Technologies</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer section">
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3
+                class="text-h3 mb-4"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    var(--text-primary),
+                    var(--accent-cyan)
+                  );
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                "
+              >
+                AI Beyond Sight
+              </h3>
+              <p class="text-body" style="color: var(--text-secondary)">
+                Transforming dreams into digital realities through cutting-edge
+                AI and immersive technologies.
+              </p>
+            </div>
+
+            <div class="footer-links">
+              <div class="footer-section">
+                <h4 class="footer-title" style="color: var(--accent-cyan)">
+                  Explore
+                </h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'genai' %}" class="footer-link"
+                      >Generative AI</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'analytic' %}" class="footer-link"
+                      >Analytics</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="footer-section">
+                <h4 class="footer-title" style="color: var(--accent-purple)">
+                  Community
+                </h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'padlet' %}" class="footer-link"
+                      >Dream Board</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'concerns' %}" class="footer-link"
+                      >Discussions</a
+                    >
+                  </li>
+                  <li><a href="#" class="footer-link">Newsletter</a></li>
+                  <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="text-body-sm" style="color: var(--text-muted)">
+              © 2025 AI Beyond Sight. All rights reserved.
+            </p>
+            <p
+              class="footer-tagline"
+              style="color: var(--accent-cyan); font-style: italic"
+            >
+              "Immersion is the language of the future."
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
+    <script src="{% static 'js/premium-script.js' %}" defer></script>
+
+    <!-- Epic Enhancements -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced typed text for hero
+        if (document.getElementById("typed-hero")) {
+          new Typed("#typed-hero", {
+            strings: ["The Creative Revolution"],
+            typeSpeed: 60,
+            backSpeed: 40,
+            backDelay: 2000,
+            loop: true,
+            cursorChar: "|",
+          });
+        }
+
+        // Enhanced timeline animations
+        const timelineItems = document.querySelectorAll(".timeline-item-epic");
+
+        // Set initial state
+        timelineItems.forEach((item, index) => {
+          item.style.opacity = "0";
+          item.style.transform = "translateY(50px)";
+          item.style.animationDelay = `${0.2 + index * 0.2}s`;
+        });
+
+        // Intersection Observer for timeline
+        const timelineObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                entry.target.style.transition = "all 0.8s ease";
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -100px 0px",
+          }
+        );
+
+        // Observe timeline items
+        timelineItems.forEach((item) => {
+          timelineObserver.observe(item);
+        });
+
+        // Enhanced card hover effects
+        const epicCards = document.querySelectorAll(".epic-card");
+        epicCards.forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px)";
+            this.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+        // Fix missing images gracefully
+        const images = document.querySelectorAll("img");
+        images.forEach((img) => {
+          img.addEventListener("error", function () {
+            this.style.display = "none";
+          });
+        });
+      });
+
+      // Performance monitoring
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {
+            console.log("Service worker registration enhanced");
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

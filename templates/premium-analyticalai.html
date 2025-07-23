@@ -1,0 +1,905 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Analytical AI: Insight Beyond Sight - Understanding the invisible patterns in digital behavior"
+    />
+    <meta
+      name="keywords"
+      content="Analytical AI, Behavioral Analytics, Digital Insights, AI, Machine Learning"
+    />
+    <meta name="author" content="AI Beyond Sight" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+
+    <title>Analytical AI: Insight Beyond Sight | AI Beyond Sight</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Enhanced Font Loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Files - Same as index.html -->
+    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical CSS for initial render */
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0a0118 0%, #0f0f0f 100%);
+        color: #f3f4f6;
+        margin: 0;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(15, 15, 15, 0.8);
+        backdrop-filter: blur(20px);
+      }
+
+      /* Ensure essential CSS variables are defined */
+      :root {
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+        --space-8: 2rem;
+        --space-12: 3rem;
+        --space-16: 4rem;
+        --space-20: 5rem;
+        --space-24: 6rem;
+        --space-32: 8rem;
+
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --radius-2xl: 1.5rem;
+
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-400: #a3a3a3;
+        --neutral-500: #737373;
+        --neutral-600: #525252;
+        --neutral-700: #404040;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+
+        --accent-cyan: #00f5ff;
+        --accent-purple: #8b5cf6;
+        --accent-pink: #ec4899;
+      }
+
+      /* Fix for image sizing and positioning */
+      .analytical-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: var(--radius-xl);
+      }
+
+      .platform-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+      }
+
+      /* Fix spacing and utility classes */
+      .space-y-3 > * + * {
+        margin-top: 0.75rem;
+      }
+
+      .mb-16 {
+        margin-bottom: 4rem;
+      }
+
+      /* Enhanced grid layout */
+      .analytical-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-8);
+        align-items: center;
+      }
+
+      .platform-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: center;
+        margin-bottom: var(--space-16);
+      }
+
+      .platform-grid.reverse {
+        direction: rtl;
+      }
+
+      .platform-grid.reverse > * {
+        direction: ltr;
+      }
+
+      /* Improved card content spacing */
+      .analytical-content {
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Ensure sections have proper spacing */
+      .section {
+        padding: var(--space-20) 0;
+      }
+
+      .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--space-6);
+      }
+
+      /* Basic card styling fallback */
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-xl);
+        padding: var(--space-6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-4px);
+      }
+
+      /* Typography fallbacks */
+      .text-h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: var(--space-4);
+      }
+
+      .text-h3 {
+        font-size: clamp(1.25rem, 3vw, 1.75rem);
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: var(--space-3);
+      }
+
+      .text-body-lg {
+        font-size: 1.125rem;
+        line-height: 1.7;
+      }
+
+      .text-body {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* Animation classes fallback */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 70px;
+        }
+
+        .platform-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+        }
+
+        .platform-grid.reverse {
+          direction: ltr;
+        }
+
+        .analytical-image,
+        .platform-image {
+          height: 200px;
+        }
+
+        .analytical-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+        }
+      }
+
+      /* Fix typewriter jittering */
+      #typed-text {
+        min-height: 1.5em;
+        display: inline-block;
+        vertical-align: baseline;
+      }
+
+      .typed-cursor {
+        opacity: 1;
+        animation: typedjsBlink 0.7s infinite;
+        -webkit-animation: typedjsBlink 0.7s infinite;
+      }
+
+      @keyframes typedjsBlink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @-webkit-keyframes typedjsBlink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .typed-fade-out {
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+
+      /* Prevent layout shift during typing */
+      .hero-description {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="{% static 'js/premium-script.js' %}"
+      as="script"
+    />
+    <link rel="preload" href="{% static 'media/ai1.jpg' %}" as="image" />
+  </head>
+  <body>
+    <!-- Enhanced Navigation - Same as index.html -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-container">
+        <a
+          href="{% url 'home' %}"
+          class="navbar-logo"
+          aria-label="AI Beyond Sight Home"
+        >
+          AI Beyond Sight
+        </a>
+
+        <ul class="navbar-nav" role="menubar">
+          <li role="none">
+            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
+              >Home</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'genai' %}" class="navbar-link" role="menuitem"
+              >Generative AI</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
+              >AR/VR</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'analytic' %}"
+              class="navbar-link"
+              role="menuitem"
+              aria-current="page"
+              >Analytical AI</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
+              >Vision</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
+              >Concerns</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
+              >Padlet</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="navbar-toggle"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <header class="hero" id="hero">
+      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          Analytical Intelligence
+        </div>
+
+        <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+          <span
+            style="
+              font-family: 'Inter', sans-serif;
+              font-size: clamp(3.5rem, 10vw, 7rem);
+              line-height: 1.1;
+              font-weight: 700;
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-purple)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            AR/VR Revolution
+          </span>
+          <br />
+        </h1>
+
+        <div class="hero-cta fade-in">
+          <a href="#what-is" class="btn btn-primary"> Explore Insights </a>
+          <a href="{% url 'vision' %}" class="btn btn-secondary">
+            Our Vision
+          </a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-label="Scroll down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
+        </svg>
+      </div>
+    </header>
+
+    <!-- What is Analytical AI Section -->
+    <section class="section" id="what-is">
+      <div class="section-container">
+        <div class="analytical-grid">
+          <div class="analytical-content fade-in">
+            <h2 class="text-h2" style="margin-bottom: var(--space-6)">
+              What is Analytical AI?
+            </h2>
+            <p class="text-body-lg">
+              Analytical AI refers to systems that process unconscious digital
+              behaviors—clicks, scrolls, pauses, searches—to understand human
+              intention, mood, and future choices. Unlike traditional AI, it
+              operates beneath conscious perception to infer deep behavioral
+              traits.
+            </p>
+          </div>
+          <div class="card fade-in">
+            <img
+              src="{% static 'media/ai1.jpg' %}"
+              alt="Analytical AI Visualization"
+              class="analytical-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invisible Inputs Section -->
+    <section class="section" id="invisible-inputs">
+      <div class="section-container">
+        <div class="section-header fade-in">
+          <div class="section-badge">Digital Fingerprints</div>
+          <h2 class="section-title">The Invisible Inputs AI Reads</h2>
+          <p class="section-description">
+            Every digital interaction leaves traces that reveal patterns
+            invisible to the human eye
+          </p>
+        </div>
+
+        <div class="card-grid stagger-children">
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Scroll Speed</h3>
+              <p class="card-description">
+                How quickly you skim tells AI what captures or loses your
+                attention.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Dwell Time</h3>
+              <p class="card-description">
+                Staying on a frame longer may signal curiosity, confusion, or
+                interest.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Device Type</h3>
+              <p class="card-description">
+                Behavior varies between mobile, desktop, or voice — and AI
+                adapts.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Skips & Pauses</h3>
+              <p class="card-description">
+                AI interprets skipped content as boredom or irrelevance.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Search History</h3>
+              <p class="card-description">
+                Your search phrases unveil desire, need, or emotion patterns.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">User Similarity</h3>
+              <p class="card-description">
+                AI compares your digital fingerprint to others with shared
+                patterns.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Micro-Hesitations</h3>
+              <p class="card-description">
+                Tiny delays before clicking or responding can indicate
+                uncertainty.
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Scroll Reversals</h3>
+              <p class="card-description">
+                When you scroll back up, AI infers that something caught your
+                attention.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Behavioral Fingerprint Section -->
+    <section class="section" id="behavioral-fingerprint">
+      <div class="section-container">
+        <div class="analytical-grid">
+          <div class="analytical-content fade-in">
+            <h2 class="text-h2" style="margin-bottom: var(--space-6)">
+              Your Behavioral Fingerprint
+            </h2>
+            <p class="text-body-lg">
+              Just like a fingerprint, your online behavior is uniquely yours.
+              AI builds a detailed model of who you are—not by what you say, but
+              by how you behave. This includes response timing, pattern
+              deviation, and sequence of interaction.
+            </p>
+          </div>
+          <div class="card fade-in">
+            <img
+              src="{% static 'media/ai2.jpg' %}"
+              alt="Behavioral Fingerprint"
+              class="analytical-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-World Applications Section -->
+    <section class="section" id="applications">
+      <div class="section-container">
+        <div class="section-header fade-in">
+          <div class="section-badge">Real-World Impact</div>
+          <h2 class="section-title">How Giants Use Your Digital Whispers</h2>
+          <p class="section-description">
+            Leading platforms leverage analytical AI to create personalized
+            experiences
+          </p>
+        </div>
+
+        <!-- Netflix -->
+        <div class="platform-grid slide-in-left">
+          <div class="card">
+            <img
+              src="{% static 'media/ai3.jpg' %}"
+              alt="Netflix Predictive Analytics"
+              class="platform-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="analytical-content">
+            <h3 class="text-h3" style="margin-bottom: var(--space-4)">
+              Netflix: Predictive Storytelling
+            </h3>
+            <div class="space-y-3">
+              <p class="text-body">
+                • Understands skip patterns to suggest ideal story pacing
+              </p>
+              <p class="text-body">
+                • Clusters user types based on emotional tone preference
+              </p>
+              <p class="text-body">
+                • Builds personalized thumbnails and trailers in real time
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube -->
+        <div class="platform-grid reverse slide-in-right">
+          <div class="analytical-content">
+            <h3 class="text-h3" style="margin-bottom: var(--space-4)">
+              YouTube: Mood Tracking Through Views
+            </h3>
+            <div class="space-y-3">
+              <p class="text-body">
+                • Tracks replays, watch-throughs, and dwell to understand
+                engagement
+              </p>
+              <p class="text-body">
+                • AI classifies emotion per session based on reaction loops
+              </p>
+              <p class="text-body">
+                • Refines recommendations based on micro-mood shifts
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/ai4.jpg' %}"
+              alt="YouTube Analytics"
+              class="platform-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Amazon -->
+        <div class="platform-grid slide-in-left">
+          <div class="card">
+            <img
+              src="{% static 'media/ai5.jpg' %}"
+              alt="Amazon Commerce AI"
+              class="platform-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="analytical-content">
+            <h3 class="text-h3" style="margin-bottom: var(--space-4)">
+              Amazon: Impulse vs. Intent
+            </h3>
+            <div class="space-y-3">
+              <p class="text-body">
+                • AI differentiates between intentional browsing and impulse
+                clicks
+              </p>
+              <p class="text-body">
+                • Price sensitivity curves built by observing hover vs.
+                add-to-cart lag
+              </p>
+              <p class="text-body">
+                • Predicts future product categories before you search
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TikTok -->
+        <div class="platform-grid reverse slide-in-right">
+          <div class="analytical-content">
+            <h3 class="text-h3" style="margin-bottom: var(--space-4)">
+              TikTok: Emotional Loops
+            </h3>
+            <div class="space-y-3">
+              <p class="text-body">
+                • Analyzes scroll velocity and repeat plays to decode emotional
+                spikes
+              </p>
+              <p class="text-body">
+                • Uses watch-decay patterns to suggest more satisfying content
+              </p>
+              <p class="text-body">
+                • Detects humor, drama, or anxiety triggers using engagement
+                rhythm
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/ai6.jpg' %}"
+              alt="TikTok Algorithm"
+              class="platform-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Spotify -->
+        <div class="platform-grid slide-in-left">
+          <div class="card">
+            <img
+              src="{% static 'media/ai7.jpg' %}"
+              alt="Spotify Music AI"
+              class="platform-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="analytical-content">
+            <h3 class="text-h3" style="margin-bottom: var(--space-4)">
+              Spotify: Sound of Self
+            </h3>
+            <div class="space-y-3">
+              <p class="text-body">
+                • Analyzes musical mood progression through playlists
+              </p>
+              <p class="text-body">
+                • Adjusts recommendations based on daypart and heart rate
+              </p>
+              <p class="text-body">
+                • Creates tempo-matching mixes to align with user focus or rest
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mirror of Intent Section -->
+    <section class="section" id="mirror-intent">
+      <div class="section-container">
+        <div
+          class="card text-center fade-in"
+          style="max-width: 800px; margin: 0 auto; padding: var(--space-8)"
+        >
+          <h2
+            class="text-h2"
+            style="
+              margin-bottom: var(--space-6);
+              background: linear-gradient(
+                135deg,
+                var(--accent-cyan),
+                var(--accent-purple)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+            "
+          >
+            Mirror of Intent
+          </h2>
+          <p class="text-body-lg">
+            While you scroll, pause, and interact—AI watches, listens, and
+            understands. You don't just use the web; you whisper to it.
+            Analytical AI converts that whisper into a reflection of your
+            unconscious self.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer section">
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3 class="footer-title">AI Beyond Sight</h3>
+              <p class="text-body" style="margin-bottom: var(--space-6)">
+                Transforming dreams into digital realities through advanced AI,
+                VR, and immersive technologies.
+              </p>
+            </div>
+
+            <div class="footer-links">
+              <div>
+                <h4 class="footer-title">Technologies</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'genai' %}" class="footer-link"
+                      >Generative AI</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'analytic' %}" class="footer-link"
+                      >Analytical AI</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="footer-title">Company</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'concerns' %}" class="footer-link"
+                      >Concerns</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'padlet' %}" class="footer-link">Padlet</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="text-body-sm">
+              © 2025 AI Beyond Sight · Dream it. Decode it. Understand it.
+            </p>
+            <p class="footer-tagline">
+              "The deepest truths hide in the smallest scrolls."
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Scripts - Same as index.html -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
+    <script src="{% static 'js/premium-script.js' %}"></script>
+
+    <!-- Analytical AI Specific Configuration -->
+    <script>
+      // Simple initialization to ensure components work
+      document.addEventListener("DOMContentLoaded", function () {
+        // Simple intersection observer for animations
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -50px 0px",
+            }
+          );
+
+          // Observe all elements with animation classes
+          document
+            .querySelectorAll(".fade-in, .slide-in-left, .slide-in-right")
+            .forEach((el) => {
+              observer.observe(el);
+            });
+        }
+
+        // Initialize typewriter effect
+        setTimeout(function () {
+          const typedElement = document.getElementById("typed-text");
+          if (typedElement && typeof Typed !== "undefined") {
+            new Typed("#typed-text", {
+              strings: [
+                "Insight Beyond Sight",
+                "Understanding Digital Whispers",
+                "Decoding Human Behavior",
+                "Reading Between the Clicks",
+              ],
+              typeSpeed: 60,
+              backSpeed: 30,
+              backDelay: 2000,
+              startDelay: 1000,
+              loop: true,
+              showCursor: true,
+              cursorChar: "|",
+              smartBackspace: true,
+            });
+          }
+        }, 500);
+
+        // Initialize other premium features if available
+        if (typeof PremiumWebsite !== "undefined") {
+          // Override the typed text method to prevent conflicts
+          PremiumWebsite.prototype.initializeTypedText = function () {
+            // Already handled above
+          };
+
+          // Create the premium website instance
+          new PremiumWebsite();
+        }
+
+        // Trigger initial animations
+        setTimeout(function () {
+          const heroElements = document.querySelectorAll(".hero .fade-in");
+          heroElements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add("visible");
+            }, index * 200);
+          });
+        }, 300);
+      });
+    </script>
+
+    <!-- Performance and Analytics (Optional) -->
+    <script>
+      // Add any analytics or performance monitoring here
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {
+            // Service worker registration failed
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

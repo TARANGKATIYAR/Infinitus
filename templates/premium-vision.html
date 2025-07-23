@@ -1,0 +1,692 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Our Vision: Transforming Dreams Into Digital Realities - The future of AI-powered creative expression"
+    />
+    <meta
+      name="keywords"
+      content="AI Vision, Digital Dreams, Creative AI, Future Technology, Innovation"
+    />
+    <meta name="author" content="AI Beyond Sight" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+
+    <title>
+      Our Vision: Transforming Dreams Into Digital Realities | AI Beyond Sight
+    </title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Enhanced Font Loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Files - Same as index.html -->
+    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical CSS for initial render */
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0a0118 0%, #0f0f0f 100%);
+        color: #f3f4f6;
+        margin: 0;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(15, 15, 15, 0.8);
+        backdrop-filter: blur(20px);
+      }
+
+      /* Vision-specific styling */
+      .vision-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+        align-items: center;
+        margin-bottom: var(--space-16);
+      }
+
+      .vision-grid.reverse {
+        direction: rtl;
+      }
+
+      .vision-grid.reverse > * {
+        direction: ltr;
+      }
+
+      .vision-content {
+        padding: var(--space-6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .vision-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: var(--radius-xl);
+      }
+
+      .vision-fullscreen {
+        position: relative;
+        height: 60vh;
+        margin: var(--space-16) 0;
+        border-radius: var(--radius-2xl);
+        overflow: hidden;
+      }
+
+      .vision-fullscreen .background-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .vision-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(10, 1, 24, 0.8) 0%,
+          rgba(15, 15, 15, 0.6) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: var(--space-8);
+      }
+
+      .vision-number {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--accent-cyan),
+          var(--accent-purple)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-right: var(--space-2);
+      }
+
+      /* Mobile responsiveness */
+      @media (max-width: 768px) {
+        body {
+          padding-top: 70px;
+        }
+
+        .vision-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-6);
+        }
+
+        .vision-grid.reverse {
+          direction: ltr;
+        }
+
+        .vision-image {
+          height: 250px;
+        }
+
+        .vision-fullscreen {
+          height: 40vh;
+          margin: var(--space-12) 0;
+        }
+      }
+    </style>
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="{% static 'js/premium-script.js' %}"
+      as="script"
+    />
+    <link rel="preload" href="{% static 'media/vision1.jpg' %}" as="image" />
+  </head>
+  <body>
+    <!-- Enhanced Navigation - Same as index.html -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-container">
+        <a
+          href="{% url 'home' %}"
+          class="navbar-logo"
+          aria-label="AI Beyond Sight Home"
+        >
+          AI Beyond Sight
+        </a>
+
+        <ul class="navbar-nav" role="menubar">
+          <li role="none">
+            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
+              >Home</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'genai' %}" class="navbar-link" role="menuitem"
+              >Generative AI</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
+              >AR/VR</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
+              >Analytical AI</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'vision' %}"
+              class="navbar-link"
+              role="menuitem"
+              aria-current="page"
+              >Vision</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
+              >Concerns</a
+            >
+          </li>
+          <li role="none">
+            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
+              >Padlet</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="navbar-toggle"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <header class="hero" id="hero">
+      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+            />
+          </svg>
+          Our Vision
+        </div>
+
+        <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+          <span
+            style="
+              font-family: 'Inter', sans-serif;
+              font-size: clamp(3.5rem, 10vw, 7rem);
+              line-height: 1.1;
+              font-weight: 700;
+              background: linear-gradient(
+                135deg,
+                var(--text-primary),
+                var(--accent-purple)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            "
+          >
+            AR/VR Revolution
+          </span>
+          <br />
+        </h1>
+
+        <div class="hero-cta fade-in">
+          <a href="#vision-1" class="btn btn-primary"> Explore Our Vision </a>
+          <a href="{% url 'home' %}" class="btn btn-secondary">
+            Back to Home
+          </a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-label="Scroll down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
+        </svg>
+      </div>
+    </header>
+
+    <!-- Vision 1: Mind to Matter -->
+    <section class="section" id="vision-1">
+      <div class="section-container">
+        <div class="vision-grid slide-in-left">
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">1.</span>Mind to Matter
+            </h2>
+            <p class="text-body-lg">
+              AI makes it possible to bring raw thought into existence—whether
+              it's a dream, a sketch, or a fleeting emotion—translating
+              cognitive sparks into reality.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/vision1.jpg' %}"
+              alt="Mind to Matter"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 2: Whisper to World -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-grid reverse slide-in-right">
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">2.</span>Whisper to World
+            </h2>
+            <p class="text-body-lg">
+              Natural language alone can now construct virtual cities, game
+              worlds, or imagined realities. Speak a sentence, and a digital
+              world materializes.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/vision2.jpg' %}"
+              alt="Whisper to World"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 3: Prompt as Paintbrush -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-fullscreen fade-in">
+          <img
+            src="{% static 'media/vision3.jpg' %}"
+            alt="Prompt as Paintbrush"
+            class="background-img"
+          />
+          <div class="vision-overlay">
+            <div>
+              <h2 class="text-h2" style="margin-bottom: var(--space-4)">
+                <span class="vision-number">3.</span>Prompt as Paintbrush
+              </h2>
+              <p class="text-body-lg">
+                Simple phrases create photoreal scenes. The line between concept
+                and creation fades, empowering makers like never before.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 4: Multisensory Outputs -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-grid slide-in-left">
+          <div class="card">
+            <img
+              src="{% static 'media/vision4a.jpg' %}"
+              alt="Multisensory Outputs"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">4.</span>Multisensory Outputs
+            </h2>
+            <p class="text-body-lg">
+              AI can fuse text, vision, sound, and motion—turning imagined ideas
+              into living experiences through dynamic media synthesis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 5: Machine-as-Muse -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-grid reverse slide-in-right">
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">5.</span>Machine-as-Muse
+            </h2>
+            <p class="text-body-lg">
+              Artists now co-create with AI — sparking ideas beyond the limits
+              of speed, scale, or imagination. Machines aren't just tools, but
+              catalysts.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/vision5.jpg' %}"
+              alt="Machine as Muse"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 6: Emotional Engines -->
+    <section class="section">
+      <div class="section-container">
+        <div
+          class="card text-center fade-in"
+          style="max-width: 800px; margin: 0 auto; padding: var(--space-8)"
+        >
+          <h2 class="text-h2" style="margin-bottom: var(--space-6)">
+            <span class="vision-number">6.</span>Emotional Engines
+          </h2>
+          <p class="text-body-lg">
+            Emotions like joy, melancholy, or awe are now translatable. AI
+            interprets them into art, sound, or motion—giving form to feelings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 7: Narrative Builders -->
+    <section class="section">
+      <div class="section-container">
+        <div class="section-header fade-in">
+          <div class="section-badge">Creative Evolution</div>
+          <h2 class="section-title">
+            <span class="vision-number">7.</span>Narrative Builders
+          </h2>
+          <p class="section-description">
+            AI constructs entire worlds of fiction, lore, and interactive
+            experiences
+          </p>
+        </div>
+
+        <div class="card-grid stagger-children">
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Stories</h3>
+              <p class="card-description">
+                Dynamic narratives that adapt and evolve
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Worlds</h3>
+              <p class="card-description">
+                Complete universes built from imagination
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Levels</h3>
+              <p class="card-description">
+                Interactive environments and experiences
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Fiction</h3>
+              <p class="card-description">
+                Literary works born from AI collaboration
+              </p>
+            </div>
+          </div>
+
+          <div class="card animate-child">
+            <div class="card-content">
+              <h3 class="card-title">Lore</h3>
+              <p class="card-description">
+                Deep mythologies and cultural contexts
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 8: Symbiotic Design -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-grid slide-in-left">
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">8.</span>Symbiotic Design
+            </h2>
+            <p class="text-body-lg">
+              The design process becomes a duet — you sketch, AI suggests; you
+              revise, it evolves. Together you build the impossible.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/vision8.jpg' %}"
+              alt="Symbiotic Design"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 9: Synthetic Imagination -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-grid reverse slide-in-right">
+          <div class="vision-content">
+            <h2 class="text-h2">
+              <span class="vision-number">9.</span>Synthetic Imagination
+            </h2>
+            <p class="text-body-lg">
+              AI doesn't replicate — it creates. It draws from vast data to
+              generate styles, aesthetics, and forms never seen by humans
+              before.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="{% static 'media/vision9.jpg' %}"
+              alt="Synthetic Imagination"
+              class="vision-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision 10: Fabricating Reality -->
+    <section class="section">
+      <div class="section-container">
+        <div class="vision-fullscreen fade-in">
+          <img
+            src="{% static 'media/vision10.jpg' %}"
+            alt="Fabricating Reality"
+            class="background-img"
+          />
+          <div class="vision-overlay">
+            <div>
+              <h2 class="text-h2" style="margin-bottom: var(--space-4)">
+                <span class="vision-number">10.</span>Fabricating Reality
+              </h2>
+              <p class="text-body-lg">
+                With generative AI, anyone can now fabricate believable digital
+                realities. A new era of worldbuilding is born — from the soul
+                outward.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Footer -->
+    <footer class="footer section">
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3 class="footer-title">AI Beyond Sight</h3>
+              <p class="text-body" style="margin-bottom: var(--space-6)">
+                Transforming dreams into digital realities through advanced AI,
+                VR, and immersive technologies.
+              </p>
+            </div>
+
+            <div class="footer-links">
+              <div>
+                <h4 class="footer-title">Technologies</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'genai' %}" class="footer-link"
+                      >Generative AI</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'analytic' %}" class="footer-link"
+                      >Analytical AI</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="footer-title">Company</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'concerns' %}" class="footer-link"
+                      >Concerns</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'padlet' %}" class="footer-link"
+                      >Community</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="text-body-sm">
+              © 2025 AI Beyond Sight · Dream it. See it. Live it.
+            </p>
+            <p class="footer-tagline">
+              "Immersion is no longer a luxury — it's the language of the
+              future."
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Scripts - Same as index.html -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
+    <script src="{% static 'js/premium-script.js' %}"></script>
+
+    <!-- Vision-specific Typed Text Configuration -->
+    <script>
+      // Initialize vision page functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize the premium website functionality
+        if (typeof PremiumWebsite !== "undefined") {
+          // Override the typed text method for vision page
+          PremiumWebsite.prototype.initializeTypedText = function () {
+            const typedElement = document.getElementById("typed-text");
+            if (typedElement && typeof Typed !== "undefined") {
+              new Typed("#typed-text", {
+                strings: [
+                  "Transforming Dreams Into Digital Realities",
+                  "Where Imagination Meets Innovation",
+                  "Creating Tomorrow's Experiences Today",
+                  "From Vision to Virtual Reality",
+                ],
+                typeSpeed: 60,
+                backSpeed: 30,
+                backDelay: 2000,
+                startDelay: 1000,
+                loop: true,
+                showCursor: true,
+                cursorChar: "|",
+                smartBackspace: true,
+              });
+            }
+          };
+
+          // Create the premium website instance
+          new PremiumWebsite();
+        }
+      });
+    </script>
+
+    <!-- Performance and Analytics (Optional) -->
+    <script>
+      // Add any analytics or performance monitoring here
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {
+            // Service worker registration failed
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
