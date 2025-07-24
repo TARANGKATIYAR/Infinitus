@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="{% block description %}AI Beyond Sight - Transforming dreams into digital realities through advanced AI, VR, and immersive technologies{% endblock %}"
+    />
+    <meta
+      name="keywords"
+      content="{% block keywords %}AI, Artificial Intelligence, VR, AR, Generative AI, Digital Reality{% endblock %}"
+    />
+    <meta name="author" content="AI Beyond Sight" />
+    <meta name="theme-color" content="#0a0118" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
+    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+
+    <title>{% block title %}AI Beyond Sight - Where Dreams Meet Digital Reality{% endblock %}</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Enhanced Font Loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Critical CSS for initial render */
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #0a0118 0%, #0f0f0f 100%);
+        color: #f3f4f6;
+        margin: 0;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(15, 15, 15, 0.8);
+        backdrop-filter: blur(20px);
+      }
+
+      /* Fix undefined variables */
+      :root {
+        --text-primary: var(--neutral-50);
+        --text-secondary: var(--neutral-300);
+        --text-muted: var(--neutral-400);
+        --bg-primary: var(--primary-900);
+      }
+    </style>
+
+    <!-- Page-specific styles -->
+    {% block extra_css %}{% endblock %}
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="{% static 'js/premium-script.js' %}"
+      as="script"
+    />
+    <link rel="preload" href="{% static 'media/logo.png' %}" as="image" />
+  </head>
+  <body>
+    <!-- Enhanced Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="navbar-container">
+        <a
+          href="{% url 'home' %}"
+          class="navbar-logo"
+          aria-label="AI Beyond Sight Home"
+        >
+          AI Beyond Sight
+        </a>
+
+        <ul class="navbar-nav" role="menubar">
+          <li role="none">
+            <a
+              href="{% url 'home' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}"
+              role="menuitem"
+              >Home</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'genai' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'genai' %} active{% endif %}"
+              role="menuitem"
+              >Generative AI</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'arvr' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'arvr' %} active{% endif %}"
+              role="menuitem"
+              >AR/VR</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'analytic' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'analytic' %} active{% endif %}"
+              role="menuitem"
+              >Analytical AI</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'vision' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'vision' %} active{% endif %}"
+              role="menuitem"
+              >Vision</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'concerns' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'concerns' %} active{% endif %}"
+              role="menuitem"
+              >Concerns</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="{% url 'padlet' %}"
+              class="navbar-link{% if request.resolver_match.url_name == 'padlet' %} active{% endif %}"
+              role="menuitem"
+              >Padlet</a
+            >
+          </li>
+        </ul>
+
+        <button
+          class="navbar-toggle"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- Enhanced Footer -->
+    <footer class="footer section">
+      <div class="section-container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3 class="text-h3 mb-4">AI Beyond Sight</h3>
+              <p class="text-body">
+                Transforming dreams into digital realities through cutting-edge
+                AI and immersive technologies.
+              </p>
+            </div>
+
+            <div class="footer-links">
+              <div class="footer-section">
+                <h4 class="footer-title">Explore</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'genai' %}" class="footer-link"
+                      >Generative AI</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'analytic' %}" class="footer-link"
+                      >Analytical AI</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="footer-section">
+                <h4 class="footer-title">Community</h4>
+                <ul class="footer-nav">
+                  <li>
+                    <a href="{% url 'padlet' %}" class="footer-link"
+                      >Dream Board</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{% url 'concerns' %}" class="footer-link"
+                      >Discussions</a
+                    >
+                  </li>
+                  <li><a href="#" class="footer-link">Newsletter</a></li>
+                  <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <p class="text-body-sm">
+              © 2025 AI Beyond Sight. All rights reserved.
+            </p>
+            <p class="footer-tagline">
+              "Immersion is no longer a luxury — it's the language of the
+              future."
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="{% static 'js/vanta.net.min.js' %}"></script>
+    <script src="{% static 'js/premium-script.js' %}" defer></script>
+
+    <!-- Page-specific scripts -->
+    {% block extra_js %}{% endblock %}
+
+    <!-- Performance and Analytics -->
+    <script>
+      // Add any analytics or performance monitoring here
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("/sw.js").catch(() => {
+            // Service worker registration failed
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

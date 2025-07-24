@@ -1,645 +1,433 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AI Concerns: Understanding the Challenges - Addressing ethical, legal, and societal implications of AI"
-    />
-    <meta
-      name="keywords"
-      content="AI Ethics, AI Concerns, Deepfakes, AI Safety, Technology Ethics, Digital Rights"
-    />
-    <meta name="author" content="AI Beyond Sight" />
+{% block title %}AI Concerns: Understanding the Challenges | AI Beyond Sight{% endblock %}
+{% block description %}AI Concerns: Understanding the Challenges - Addressing ethical, legal, and societal implications of AI{% endblock %}
+{% block keywords %}AI Ethics, AI Concerns, Deepfakes, AI Safety, Technology Ethics, Digital Rights{% endblock %}
+{% block extra_css %}
+<style>
+  .concerns-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
+    margin-bottom: var(--space-16);
+  }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+  .concerns-grid.reverse {
+    direction: rtl;
+  }
 
-    <title>AI Concerns: Understanding the Challenges | AI Beyond Sight</title>
+  .concerns-grid.reverse > * {
+    direction: ltr;
+  }
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  .concerns-content {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
-    <!-- Enhanced Font Loading -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  .concerns-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
 
-    <!-- CSS Files - Same as index.html -->
-    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+  .concern-category {
+    display: inline-block;
+    background: linear-gradient(
+      135deg,
+      var(--accent-pink),
+      var(--accent-purple)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+  }
 
-    <!-- Critical CSS for above-the-fold content -->
-    <style>
-      /* Critical CSS for initial render */
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(135deg, #0a0118 0%, #0f0f0f 100%);
-        color: #f3f4f6;
-        margin: 0;
-      }
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        background: rgba(15, 15, 15, 0.8);
-        backdrop-filter: blur(20px);
-      }
+  .concern-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0;
+  }
 
-      /* Concerns-specific styling */
-      .concerns-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-8);
-        align-items: center;
-        margin-bottom: var(--space-16);
-      }
+  .concern-list li {
+    margin-bottom: var(--space-3);
+    padding: var(--space-3);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--accent-cyan);
+  }
 
-      .concerns-grid.reverse {
-        direction: rtl;
-      }
+  .concern-list strong {
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
 
-      .concerns-grid.reverse > * {
-        direction: ltr;
-      }
+  /* Warning styling for critical concerns */
+  .critical-concern {
+    border-left-color: var(--accent-pink);
+  }
 
-      .concerns-content {
-        padding: var(--space-6);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
+  .critical-concern strong {
+    color: var(--accent-pink);
+  }
 
-      .concerns-image {
-        width: 100%;
-        height: 280px;
-        object-fit: cover;
-        border-radius: var(--radius-xl);
-      }
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 70px;
+    }
 
-      .concern-category {
-        display: inline-block;
-        background: linear-gradient(
-          135deg,
-          var(--accent-pink),
-          var(--accent-purple)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size: 0.875rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: var(--space-2);
-      }
+    .concerns-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
 
-      .concern-list {
-        list-style: none;
-        padding: 0;
-        margin: var(--space-4) 0;
-      }
+    .concerns-grid.reverse {
+      direction: ltr;
+    }
 
-      .concern-list li {
-        margin-bottom: var(--space-3);
-        padding: var(--space-3);
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: var(--radius-lg);
-        border-left: 3px solid var(--accent-cyan);
-      }
+    .concerns-image {
+      height: 220px;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
 
-      .concern-list strong {
-        color: var(--accent-cyan);
-        font-weight: 600;
-      }
+<!-- Enhanced Hero Section -->
+<header class="hero" id="hero">
+  <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
 
-      /* Warning styling for critical concerns */
-      .critical-concern {
-        border-left-color: var(--accent-pink);
-      }
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+      </svg>
+      Critical Considerations
+    </div>
 
-      .critical-concern strong {
-        color: var(--accent-pink);
-      }
+    <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+      <span
+        style="
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(3.5rem, 10vw, 7rem);
+          line-height: 1.1;
+          font-weight: 700;
+          background: linear-gradient(
+            135deg,
+            var(--text-primary),
+            var(--accent-purple)
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        "
+      >
+        AR/VR Revolution
+      </span>
+      <br />
+    </h1>
 
-      /* Mobile responsiveness */
-      @media (max-width: 768px) {
-        body {
-          padding-top: 70px;
-        }
+    <div class="hero-cta fade-in">
+      <a href="#concern-1" class="btn btn-primary"> Explore Concerns </a>
+      <a href="{% url 'vision' %}" class="btn btn-secondary"> Our Vision </a>
+    </div>
+  </div>
 
-        .concerns-grid {
-          grid-template-columns: 1fr;
-          gap: var(--space-6);
-        }
+  <div class="scroll-indicator" aria-label="Scroll down">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
+    </svg>
+  </div>
+</header>
 
-        .concerns-grid.reverse {
-          direction: ltr;
-        }
-
-        .concerns-image {
-          height: 220px;
-        }
-      }
-    </style>
-
-    <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      href="{% static 'js/premium-script.js' %}"
-      as="script"
-    />
-    <link rel="preload" href="{% static 'media/Concerns1.jpg' %}" as="image" />
-  </head>
-  <body>
-    <!-- Enhanced Navigation - Same as index.html -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="navbar-container">
-        <a
-          href="{% url 'home' %}"
-          class="navbar-logo"
-          aria-label="AI Beyond Sight Home"
-        >
-          AI Beyond Sight
-        </a>
-
-        <ul class="navbar-nav" role="menubar">
-          <li role="none">
-            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
-              >Home</a
-            >
+<!-- Concern 1: Legal Vacuum -->
+<section class="section" id="concern-1">
+  <div class="section-container">
+    <div class="concerns-grid slide-in-left">
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns1.jpg' %}"
+          alt="Legal Framework Challenges"
+          class="concerns-image"
+          loading="lazy"
+        />
+      </div>
+      <div class="concerns-content">
+        <div class="concern-category">Legal & Regulatory</div>
+        <h2 class="text-h3">Legal Vacuum for Synthetic Content</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> Laws often lag behind AI capabilities,
+            creating regulatory gaps.
           </li>
-          <li role="none">
-            <a href="{% url 'genai' %}" class="navbar-link" role="menuitem"
-              >Generative AI</a
-            >
+          <li class="critical-concern">
+            <strong>Concern:</strong> No clear global legal framework governs
+            deepfakes, AI-created identities, or ownership of synthetic media.
           </li>
-          <li role="none">
-            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
-              >AR/VR</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
-              >Analytical AI</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
-              >Vision</a
-            >
-          </li>
-          <li role="none">
-            <a
-              href="{% url 'concerns' %}"
-              class="navbar-link"
-              role="menuitem"
-              aria-current="page"
-              >Concerns</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
-              >Padlet</a
-            >
+          <li>
+            <strong>Impact:</strong> Victims have little recourse when
+            AI-generated content harms reputation or privacy.
           </li>
         </ul>
-
-        <button
-          class="navbar-toggle"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
-    </nav>
+    </div>
+  </div>
+</section>
 
-    <!-- Enhanced Hero Section -->
-    <header class="hero" id="hero">
-      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
-
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
-          </svg>
-          Critical Considerations
-        </div>
-
-        <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
-          <span
-            style="
-              font-family: 'Inter', sans-serif;
-              font-size: clamp(3.5rem, 10vw, 7rem);
-              line-height: 1.1;
-              font-weight: 700;
-              background: linear-gradient(
-                135deg,
-                var(--text-primary),
-                var(--accent-purple)
-              );
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            "
-          >
-            AR/VR Revolution
-          </span>
-          <br />
-        </h1>
-
-        <div class="hero-cta fade-in">
-          <a href="#concern-1" class="btn btn-primary"> Explore Concerns </a>
-          <a href="{% url 'vision' %}" class="btn btn-secondary">
-            Our Vision
-          </a>
-        </div>
+<!-- Concern 2: Environmental Impact -->
+<section class="section">
+  <div class="section-container">
+    <div class="concerns-grid reverse slide-in-right">
+      <div class="concerns-content">
+        <div class="concern-category">Environmental</div>
+        <h2 class="text-h3">Environmental Cost of Generating Dreams</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> Training and running large AI models
+            consumes vast energy resources.
+          </li>
+          <li class="critical-concern">
+            <strong>Concerns:</strong> As we generate increasingly complex
+            digital realities, the carbon footprint skyrockets.
+          </li>
+          <li>
+            <strong>Impact:</strong> Conflicts with sustainability goals, hidden
+            ecological damage from "invisible" AI use.
+          </li>
+        </ul>
       </div>
-
-      <div class="scroll-indicator" aria-label="Scroll down">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
-        </svg>
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns2.jpg' %}"
+          alt="Environmental Impact"
+          class="concerns-image"
+          loading="lazy"
+        />
       </div>
-    </header>
+    </div>
+  </div>
+</section>
 
-    <!-- Concern 1: Legal Vacuum -->
-    <section class="section" id="concern-1">
-      <div class="section-container">
-        <div class="concerns-grid slide-in-left">
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns1.jpg' %}"
-              alt="Legal Framework Challenges"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-          <div class="concerns-content">
-            <div class="concern-category">Legal & Regulatory</div>
-            <h2 class="text-h3">Legal Vacuum for Synthetic Content</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> Laws often lag behind AI capabilities,
-                creating regulatory gaps.
-              </li>
-              <li class="critical-concern">
-                <strong>Concern:</strong> No clear global legal framework
-                governs deepfakes, AI-created identities, or ownership of
-                synthetic media.
-              </li>
-              <li>
-                <strong>Impact:</strong> Victims have little recourse when
-                AI-generated content harms reputation or privacy.
-              </li>
-            </ul>
-          </div>
-        </div>
+<!-- Concern 3: Deepfake Abuse -->
+<section class="section">
+  <div class="section-container">
+    <div class="concerns-grid slide-in-left">
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns3.jpg' %}"
+          alt="Deepfake Technology Risks"
+          class="concerns-image"
+          loading="lazy"
+        />
       </div>
-    </section>
-
-    <!-- Concern 2: Environmental Impact -->
-    <section class="section">
-      <div class="section-container">
-        <div class="concerns-grid reverse slide-in-right">
-          <div class="concerns-content">
-            <div class="concern-category">Environmental</div>
-            <h2 class="text-h3">Environmental Cost of Generating Dreams</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> Training and running large AI models
-                consumes vast energy resources.
-              </li>
-              <li class="critical-concern">
-                <strong>Concerns:</strong> As we generate increasingly complex
-                digital realities, the carbon footprint skyrockets.
-              </li>
-              <li>
-                <strong>Impact:</strong> Conflicts with sustainability goals,
-                hidden ecological damage from "invisible" AI use.
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns2.jpg' %}"
-              alt="Environmental Impact"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-        </div>
+      <div class="concerns-content">
+        <div class="concern-category">Misinformation</div>
+        <h2 class="text-h3">Deepfake Abuse</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> AI can fabricate hyper-realistic videos of
+            people saying or doing things they never did.
+          </li>
+          <li class="critical-concern">
+            <strong>Risk:</strong> Used for political manipulation, defamation,
+            blackmail, and spreading misinformation.
+          </li>
+          <li>
+            <strong>Challenge:</strong> Detection technology struggles to keep
+            pace with generation capabilities.
+          </li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Concern 3: Deepfake Abuse -->
-    <section class="section">
-      <div class="section-container">
-        <div class="concerns-grid slide-in-left">
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns3.jpg' %}"
-              alt="Deepfake Technology Risks"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-          <div class="concerns-content">
-            <div class="concern-category">Misinformation</div>
-            <h2 class="text-h3">Deepfake Abuse</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> AI can fabricate hyper-realistic videos
-                of people saying or doing things they never did.
-              </li>
-              <li class="critical-concern">
-                <strong>Risk:</strong> Used for political manipulation,
-                defamation, blackmail, and spreading misinformation.
-              </li>
-              <li>
-                <strong>Challenge:</strong> Detection technology struggles to
-                keep pace with generation capabilities.
-              </li>
-            </ul>
-          </div>
-        </div>
+<!-- Concern 4: Digital Rights -->
+<section class="section">
+  <div class="section-container">
+    <div class="concerns-grid reverse slide-in-right">
+      <div class="concerns-content">
+        <div class="concern-category">Privacy & Rights</div>
+        <h2 class="text-h3">Non-Consensual Digital Replication</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> AI can recreate someone's face, body, or
+            voice without their permission.
+          </li>
+          <li class="critical-concern">
+            <strong>Risk:</strong> Violates personal rights and dignity, enables
+            harassment and exploitation.
+          </li>
+          <li>
+            <strong>Concern:</strong> Lack of control over digital identity and
+            representation.
+          </li>
+        </ul>
       </div>
-    </section>
-
-    <!-- Concern 4: Digital Rights -->
-    <section class="section">
-      <div class="section-container">
-        <div class="concerns-grid reverse slide-in-right">
-          <div class="concerns-content">
-            <div class="concern-category">Privacy & Rights</div>
-            <h2 class="text-h3">Non-Consensual Digital Replication</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> AI can recreate someone's face, body, or
-                voice without their permission.
-              </li>
-              <li class="critical-concern">
-                <strong>Risk:</strong> Violates personal rights and dignity,
-                enables harassment and exploitation.
-              </li>
-              <li>
-                <strong>Concern:</strong> Lack of control over digital identity
-                and representation.
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns4.jpg' %}"
-              alt="Digital Rights and Privacy"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-        </div>
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns4.jpg' %}"
+          alt="Digital Rights and Privacy"
+          class="concerns-image"
+          loading="lazy"
+        />
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Concern 5: Creative Rights -->
-    <section class="section">
-      <div class="section-container">
-        <div class="concerns-grid slide-in-left">
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns5.jpg' %}"
-              alt="Creative Rights and Consent"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-          <div class="concerns-content">
-            <div class="concern-category">Intellectual Property</div>
-            <h2 class="text-h3">Consent in Creative Use</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> AI can be trained on someone's personal
-                content to generate new works.
-              </li>
-              <li class="critical-concern">
-                <strong>Risk:</strong> Artists, writers, and creators lose
-                control over how their style or identity is reused.
-              </li>
-              <li>
-                <strong>Impact:</strong> Devaluation of human creativity and
-                potential loss of livelihood.
-              </li>
-            </ul>
-          </div>
-        </div>
+<!-- Concern 5: Creative Rights -->
+<section class="section">
+  <div class="section-container">
+    <div class="concerns-grid slide-in-left">
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns5.jpg' %}"
+          alt="Creative Rights and Consent"
+          class="concerns-image"
+          loading="lazy"
+        />
       </div>
-    </section>
-
-    <!-- Concern 6: Weaponized AI -->
-    <section class="section">
-      <div class="section-container">
-        <div class="concerns-grid reverse slide-in-right">
-          <div class="concerns-content">
-            <div class="concern-category">Societal Impact</div>
-            <h2 class="text-h3">Weaponized Narratives and Black Box Issues</h2>
-            <ul class="concern-list">
-              <li>
-                <strong>Issue:</strong> AI can create persuasive propaganda or
-                conspiracy content at scale.
-              </li>
-              <li class="critical-concern">
-                <strong>Risk:</strong> Used by malicious actors or governments
-                to spread hate, fear, or manipulate masses.
-              </li>
-              <li>
-                <strong>Black Box Problem:</strong> Lack of transparency in AI
-                decision-making processes makes accountability difficult.
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <img
-              src="{% static 'media/Concerns6.jpg' %}"
-              alt="AI Weaponization and Transparency"
-              class="concerns-image"
-              loading="lazy"
-            />
-          </div>
-        </div>
+      <div class="concerns-content">
+        <div class="concern-category">Intellectual Property</div>
+        <h2 class="text-h3">Consent in Creative Use</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> AI can be trained on someone's personal
+            content to generate new works.
+          </li>
+          <li class="critical-concern">
+            <strong>Risk:</strong> Artists, writers, and creators lose control
+            over how their style or identity is reused.
+          </li>
+          <li>
+            <strong>Impact:</strong> Devaluation of human creativity and
+            potential loss of livelihood.
+          </li>
+        </ul>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- Call to Action Section -->
-    <section class="section">
-      <div class="section-container">
-        <div
-          class="card text-center fade-in"
-          style="max-width: 900px; margin: 0 auto; padding: var(--space-8)"
-        >
-          <h2
-            class="text-h2"
-            style="
-              margin-bottom: var(--space-6);
-              background: linear-gradient(
-                135deg,
-                var(--accent-cyan),
-                var(--accent-purple)
-              );
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-            "
-          >
-            Responsible AI Development
-          </h2>
-          <p class="text-body-lg" style="margin-bottom: var(--space-6)">
-            While AI offers incredible possibilities, we must address these
-            concerns through ethical development, transparent governance, and
-            collaborative solutions. The future of AI depends on how we handle
-            these challenges today.
-          </p>
-          <div
-            style="
-              display: flex;
-              gap: var(--space-4);
-              justify-content: center;
-              flex-wrap: wrap;
-            "
-          >
-            <a href="{% url 'vision' %}" class="btn btn-primary">Our Vision</a>
-            <a href="{% url 'home' %}" class="btn btn-secondary">Learn More</a>
-          </div>
-        </div>
+<!-- Concern 6: Weaponized AI -->
+<section class="section">
+  <div class="section-container">
+    <div class="concerns-grid reverse slide-in-right">
+      <div class="concerns-content">
+        <div class="concern-category">Societal Impact</div>
+        <h2 class="text-h3">Weaponized Narratives and Black Box Issues</h2>
+        <ul class="concern-list">
+          <li>
+            <strong>Issue:</strong> AI can create persuasive propaganda or
+            conspiracy content at scale.
+          </li>
+          <li class="critical-concern">
+            <strong>Risk:</strong> Used by malicious actors or governments to
+            spread hate, fear, or manipulate masses.
+          </li>
+          <li>
+            <strong>Black Box Problem:</strong> Lack of transparency in AI
+            decision-making processes makes accountability difficult.
+          </li>
+        </ul>
       </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer section">
-      <div class="section-container">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-brand">
-              <h3 class="footer-title">AI Beyond Sight</h3>
-              <p class="text-body" style="margin-bottom: var(--space-6)">
-                Transforming dreams into digital realities through responsible
-                AI development and ethical innovation.
-              </p>
-            </div>
-
-            <div class="footer-links">
-              <div>
-                <h4 class="footer-title">Technologies</h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'genai' %}" class="footer-link"
-                      >Generative AI</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'analytic' %}" class="footer-link"
-                      >Analytical AI</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h4 class="footer-title">Company</h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'concerns' %}" class="footer-link"
-                      >Concerns</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'padlet' %}" class="footer-link"
-                      >Community</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p class="text-body-sm">
-              © 2025 AI Beyond Sight · Ethical AI. Responsible Innovation.
-            </p>
-            <p class="footer-tagline">
-              "With great power comes great responsibility in the age of AI."
-            </p>
-          </div>
-        </div>
+      <div class="card">
+        <img
+          src="{% static 'media/Concerns6.jpg' %}"
+          alt="AI Weaponization and Transparency"
+          class="concerns-image"
+          loading="lazy"
+        />
       </div>
-    </footer>
+    </div>
+  </div>
+</section>
 
-    <!-- Enhanced Scripts - Same as index.html -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="{% static 'js/vanta.net.min.js' %}"></script>
-    <script src="{% static 'js/premium-script.js' %}"></script>
-
-    <!-- Concerns-specific Typed Text Configuration -->
-    <script>
-      // Initialize concerns page functionality
-      document.addEventListener("DOMContentLoaded", function () {
-        // Initialize the premium website functionality
-        if (typeof PremiumWebsite !== "undefined") {
-          // Override the typed text method for concerns page
-          PremiumWebsite.prototype.initializeTypedText = function () {
-            const typedElement = document.getElementById("typed-text");
-            if (typedElement && typeof Typed !== "undefined") {
-              new Typed("#typed-text", {
-                strings: [
-                  "Understanding the Challenges",
-                  "Addressing Ethical Implications",
-                  "Building Responsible AI",
-                  "Protecting Digital Rights",
-                ],
-                typeSpeed: 60,
-                backSpeed: 30,
-                backDelay: 2000,
-                startDelay: 1000,
-                loop: true,
-                showCursor: true,
-                cursorChar: "|",
-                smartBackspace: true,
-              });
-            }
-          };
-
-          // Create the premium website instance
-          new PremiumWebsite();
-        }
-      });
-    </script>
-
-    <!-- Performance and Analytics (Optional) -->
-    <script>
-      // Add any analytics or performance monitoring here
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js").catch(() => {
-            // Service worker registration failed
+<!-- Call to Action Section -->
+<section class="section">
+  <div class="section-container">
+    <div
+      class="card text-center fade-in"
+      style="max-width: 900px; margin: 0 auto; padding: var(--space-8)"
+    >
+      <h2
+        class="text-h2"
+        style="
+          margin-bottom: var(--space-6);
+          background: linear-gradient(
+            135deg,
+            var(--accent-cyan),
+            var(--accent-purple)
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        "
+      >
+        Responsible AI Development
+      </h2>
+      <p class="text-body-lg" style="margin-bottom: var(--space-6)">
+        While AI offers incredible possibilities, we must address these concerns
+        through ethical development, transparent governance, and collaborative
+        solutions. The future of AI depends on how we handle these challenges
+        today.
+      </p>
+      <div
+        style="
+          display: flex;
+          gap: var(--space-4);
+          justify-content: center;
+          flex-wrap: wrap;
+        "
+      >
+        <a href="{% url 'vision' %}" class="btn btn-primary">Our Vision</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<!-- Concerns-specific Typed Text Configuration -->
+<script>
+  // Initialize concerns page functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize the premium website functionality
+    if (typeof PremiumWebsite !== "undefined") {
+      // Override the typed text method for concerns page
+      PremiumWebsite.prototype.initializeTypedText = function () {
+        const typedElement = document.getElementById("typed-text");
+        if (typedElement && typeof Typed !== "undefined") {
+          new Typed("#typed-text", {
+            strings: [
+              "Understanding the Challenges",
+              "Addressing Ethical Implications",
+              "Building Responsible AI",
+              "Protecting Digital Rights",
+            ],
+            typeSpeed: 60,
+            backSpeed: 30,
+            backDelay: 2000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: true,
+            cursorChar: "|",
+            smartBackspace: true,
           });
-        });
-      }
-    </script>
-  </body>
-</html>
+        }
+      };
+
+      // Create the premium website instance
+      new PremiumWebsite();
+    }
+  });
+</script>
+{% endblock %}

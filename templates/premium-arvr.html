@@ -1,1064 +1,748 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AR/VR: Immersive Realities Beyond Imagination - Experience the future of spatial computing"
-    />
-    <meta
-      name="keywords"
-      content="AR, VR, Augmented Reality, Virtual Reality, Spatial Computing, Immersive Technology"
-    />
-    <meta name="author" content="AI Beyond Sight" />
-    <meta name="theme-color" content="#0a0118" />
+{% block title %}AR/VR: Immersive Realities Beyond Imagination | AI Beyond Sight{% endblock %}
+{% block description %}AR/VR: Immersive Realities Beyond Imagination - Experience the future of spatial computing{% endblock %}
+{% block keywords %}AR, VR, Augmented Reality, Virtual Reality, Spatial Computing, Immersive Technology{% endblock %}
+{% block extra_css %}
+<style>
+  /* Enhanced AR/VR Cards */
+  .arvr-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+    border-radius: 24px;
+    padding: 3rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    min-height: 400px;
+  }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+  .arvr-card.reverse {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    <title>
-      AR/VR: Immersive Realities Beyond Imagination | AI Beyond Sight
-    </title>
+  .arvr-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent-cyan),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  .arvr-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6),
+      0 0 100px rgba(0, 245, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
 
-    <!-- Enhanced Typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  .arvr-card:hover::before {
+    opacity: 1;
+  }
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+  .arvr-image {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: transform 0.4s ease;
+  }
 
-    <!-- Premium AR/VR Styles -->
-    <style>
-      /* Define text color variables */
-      :root {
-        --text-primary: var(--neutral-50);
-        --text-secondary: var(--neutral-300);
-        --text-muted: var(--neutral-400);
-        --bg-primary: var(--primary-900);
-      }
+  .arvr-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
 
-      /* Enhanced AR/VR Cards */
-      .arvr-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(30px);
-        border: 1px solid rgba(139, 92, 246, 0.1);
-        border-radius: 24px;
-        padding: 3rem;
-        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        min-height: 400px;
-      }
+  .arvr-card:hover .arvr-image img {
+    transform: scale(1.05);
+  }
 
-      .arvr-card.reverse {
-        grid-template-columns: 1fr 1fr;
-      }
+  .arvr-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+      135deg,
+      var(--accent-cyan),
+      var(--accent-purple)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-      .arvr-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--accent-cyan),
-          transparent
-        );
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
+  .arvr-features {
+    list-style: none;
+    padding: 0;
+  }
 
-      .arvr-card:hover {
-        transform: translateY(-8px);
-        border-color: var(--accent-cyan);
-        box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6),
-          0 0 100px rgba(0, 245, 255, 0.2),
-          inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      }
+  .arvr-features li {
+    position: relative;
+    padding: 1rem 0;
+    padding-left: 2.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  }
 
-      .arvr-card:hover::before {
-        opacity: 1;
-      }
+  .arvr-features li:last-child {
+    border-bottom: none;
+  }
 
-      .arvr-image {
-        width: 100%;
-        height: 300px;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        transition: transform 0.4s ease;
-      }
+  .arvr-features li::before {
+    content: "✦";
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    color: var(--accent-cyan);
+    font-weight: bold;
+    animation: sparkle 2s ease-in-out infinite;
+  }
 
-      .arvr-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-      }
+  .arvr-features li:nth-child(even)::before {
+    color: var(--accent-purple);
+    animation-delay: 0.5s;
+  }
 
-      .arvr-card:hover .arvr-image img {
-        transform: scale(1.05);
-      }
+  .arvr-features li:nth-child(3n)::before {
+    color: var(--accent-pink);
+    animation-delay: 1s;
+  }
 
-      .arvr-content h3 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-        background: linear-gradient(
-          135deg,
-          var(--accent-cyan),
-          var(--accent-purple)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+  @keyframes sparkle {
+    0%,
+    100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
 
-      .arvr-features {
-        list-style: none;
-        padding: 0;
-      }
+  .arvr-features strong {
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
 
-      .arvr-features li {
-        position: relative;
-        padding: 1rem 0;
-        padding-left: 2.5rem;
-        color: var(--text-secondary);
-        line-height: 1.7;
-        border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-      }
+  /* Section Dividers */
+  .section-divider {
+    text-align: center;
+    padding: 6rem 0 4rem;
+    position: relative;
+  }
 
-      .arvr-features li:last-child {
-        border-bottom: none;
-      }
+  .section-divider h2 {
+    background: rgba(10, 1, 24, 0.9);
+    padding: 0 2rem;
+    display: inline-block;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(
+      135deg,
+      var(--accent-purple),
+      var(--accent-pink)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+  }
 
-      .arvr-features li::before {
-        content: "✦";
-        position: absolute;
-        left: 0;
-        top: 1rem;
-        color: var(--accent-cyan);
-        font-weight: bold;
-        animation: sparkle 2s ease-in-out infinite;
-      }
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .arvr-card {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+      gap: 2rem;
+      text-align: center;
+    }
 
-      .arvr-features li:nth-child(even)::before {
-        color: var(--accent-purple);
-        animation-delay: 0.5s;
-      }
+    .arvr-card.reverse {
+      grid-template-columns: 1fr;
+    }
 
-      .arvr-features li:nth-child(3n)::before {
-        color: var(--accent-pink);
-        animation-delay: 1s;
-      }
+    .arvr-image {
+      height: 250px;
+    }
 
-      @keyframes sparkle {
-        0%,
-        100% {
-          opacity: 0.8;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-      }
+    .section-divider {
+      padding: 4rem 0 2rem;
+    }
+  }
 
-      .arvr-features strong {
-        color: var(--accent-cyan);
-        font-weight: 600;
-      }
+  /* Enhanced loading states */
+  .arvr-card {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 0.8s ease forwards;
+  }
 
-      /* Section Dividers */
-      .section-divider {
-        text-align: center;
-        padding: 6rem 0 4rem;
-        position: relative;
-      }
+  .arvr-card:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  .arvr-card:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  .arvr-card:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  .arvr-card:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+  .arvr-card:nth-child(5) {
+    animation-delay: 1s;
+  }
 
-      .section-divider::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 200px;
-        height: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          var(--accent-cyan),
-          var(--accent-purple),
-          transparent
-        );
-        opacity: 0.5;
-      }
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+{% endblock %} {% block content %}
 
-      .section-divider h2 {
-        background: rgba(10, 1, 24, 0.9);
-        padding: 0 2rem;
-        display: inline-block;
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 700;
-        background: linear-gradient(
-          135deg,
-          var(--accent-purple),
-          var(--accent-pink)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        position: relative;
-        z-index: 1;
-      }
+<!-- Enhanced Hero Section -->
+<header class="hero" id="hero">
+  <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
+  <div class="section-container">
+    <div class="hero-content text-center">
+      <div class="hero-badge fade-in" style="animation-delay: 0.2s">
+        <span>✦ IMMERSIVE TECHNOLOGY ✦</span>
+      </div>
 
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .arvr-card {
-          grid-template-columns: 1fr;
-          padding: 2rem;
-          gap: 2rem;
-          text-align: center;
-        }
-
-        .arvr-card.reverse {
-          grid-template-columns: 1fr;
-        }
-
-        .arvr-image {
-          height: 250px;
-        }
-
-        .section-divider {
-          padding: 4rem 0 2rem;
-        }
-
-        .section-divider::before {
-          width: 150px;
-        }
-      }
-
-      /* Enhanced loading states */
-      .arvr-card {
-        opacity: 0;
-        transform: translateY(50px);
-        animation: slideUp 0.8s ease forwards;
-      }
-
-      .arvr-card:nth-child(1) {
-        animation-delay: 0.2s;
-      }
-      .arvr-card:nth-child(2) {
-        animation-delay: 0.4s;
-      }
-      .arvr-card:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-      .arvr-card:nth-child(4) {
-        animation-delay: 0.8s;
-      }
-      .arvr-card:nth-child(5) {
-        animation-delay: 1s;
-      }
-
-      @keyframes slideUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Enhanced Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="navbar-container">
-        <a
-          href="{% url 'home' %}"
-          class="navbar-logo"
-          aria-label="AI Beyond Sight Home"
+      <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+        <span
+          style="
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 1.1;
+            font-weight: 700;
+            background: linear-gradient(
+              135deg,
+              var(--text-primary),
+              var(--accent-purple)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
         >
-          AI Beyond Sight
-        </a>
+          AR/VR Revolution
+        </span>
+        <br />
+      </h1>
 
-        <ul class="navbar-nav" role="menubar">
-          <li role="none">
-            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
-              >Home</a
-            >
+      <div class="hero-actions fade-in" style="animation-delay: 0.8s">
+        <a href="#ar-section" class="btn btn-primary">
+          <span>Explore AR Magic</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+            />
+          </svg>
+        </a>
+        <a href="#vr-section" class="btn btn-secondary">
+          <span>Discover VR Worlds</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll fade-in" style="animation-delay: 1s">
+    <div class="scroll-line"></div>
+    <div class="scroll-dot"></div>
+  </div>
+</header>
+
+<!-- Introduction Section -->
+<section class="section" id="intro" aria-label="Introduction to AR/VR">
+  <div class="section-container">
+    <div class="grid-2-col items-center">
+      <div class="fade-in">
+        <div class="section-badge">
+          <span>◆ SPATIAL COMPUTING ◆</span>
+        </div>
+        <h2
+          class="section-title"
+          style="
+            font-size: clamp(3rem, 7vw, 5rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(
+              135deg,
+              var(--text-primary),
+              var(--accent-purple)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          Reality <br />Reimagined
+        </h2>
+        <div class="content-luxury">
+          <p
+            class="text-body-xl"
+            style="
+              color: var(--text-secondary);
+              font-weight: 300;
+              margin-bottom: var(--space-8);
+              line-height: 1.8;
+              font-size: 1.3rem;
+            "
+          >
+            Augmented and Virtual Reality represent the convergence of digital
+            and physical worlds — creating immersive experiences that transcend
+            traditional computing boundaries.
+          </p>
+          <p
+            class="text-body-lg"
+            style="
+              color: var(--text-muted);
+              margin-bottom: var(--space-8);
+              line-height: 1.7;
+            "
+          >
+            From AR's seamless overlay of digital information onto reality to
+            VR's complete transportation into virtual universes, these
+            technologies redefine human-computer interaction.
+          </p>
+          <p
+            class="text-body-lg"
+            style="color: var(--text-muted); line-height: 1.7"
+          >
+            Experience the future where the line between imagination and reality
+            dissolves into infinite possibilities of spatial computing
+            excellence.
+          </p>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="card">
+          <img
+            src="{% static './media/homear.jpg' %}"
+            alt="AR/VR immersive experience"
+            class="card-image"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AR Section Divider -->
+<div class="section-divider" id="ar-section">
+  <h2 data-aos="fade-up">Augmented Reality Applications</h2>
+</div>
+
+<!-- AR Applications -->
+<section class="section" aria-label="Augmented Reality Applications">
+  <div class="section-container">
+    <!-- Real-Time Object Recognition -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/ar1.jpg' %}"
+          alt="Real-time object recognition"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>Real-Time Object Recognition</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Instant Object Recognition</strong> – AI instantly
+            identifies and labels real-world objects like chairs, laptops, and
+            plants, enabling seamless human-environment interaction.
           </li>
-          <li role="none">
-            <a href="{% url 'genai' %}" class="navbar-link" role="menuitem"
-              >Generative AI</a
-            >
+          <li>
+            <strong>Context-Aware Overlays</strong> – It adds meaningful data
+            like names, specs, or temperature directly on the recognized
+            objects, making AR truly informative and interactive.
           </li>
-          <li role="none">
-            <a
-              href="{% url 'arvr' %}"
-              class="navbar-link"
-              role="menuitem"
-              style="color: var(--accent-cyan)"
-              >AR/VR</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
-              >Analytics</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
-              >Vision</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
-              >Concerns</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
-              >Padlet</a
-            >
+          <li>
+            <strong>3D Mapping & Depth Estimation</strong> – AI builds a virtual
+            depth grid of the environment, allowing precise placement of virtual
+            elements and obstacle-aware AR experiences.
           </li>
         </ul>
+      </div>
+    </article>
 
-        <button
-          class="navbar-toggle"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
+    <!-- Environment Mapping -->
+    <article class="arvr-card reverse fade-in">
+      <div class="arvr-content">
+        <h3>Environment Mapping & Depth Estimation</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Accurate 3D Environment Mapping</strong> – AI scans and
+            builds real-time 3D models of the surroundings, capturing surfaces,
+            structures, and spatial dimensions with high precision.
+          </li>
+          <li>
+            <strong>Room-Scale AR Experiences</strong> – It enables virtual
+            objects to interact naturally within the full scale of a room,
+            enhancing immersion and spatial coherence.
+          </li>
+          <li>
+            <strong>Obstacle-Aware Overlays</strong> – AI ensures virtual
+            content avoids real-world collisions by understanding object depth,
+            distance, and boundaries in real time.
+          </li>
+        </ul>
+      </div>
+      <div class="arvr-image">
+        <img
+          src="{% static './media/ar2.jpg' %}"
+          alt="Environment mapping and depth estimation"
+          loading="lazy"
+        />
+      </div>
+    </article>
+
+    <!-- Smart AR Assistants -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/ar3.jpg' %}"
+          alt="Smart AR assistants"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>Smart AR Assistants</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Real-Time Translation & Recognition</strong> – AI-powered AR
+            can translate foreign signs, labels, and menus instantly, making
+            navigation and communication seamless across languages.
+          </li>
+          <li>
+            <strong>Live Navigation & Direction Overlays</strong> – Smart
+            assistants guide users with real-time arrows, route highlights, and
+            contextual cues right on the physical path in front of them.
+          </li>
+          <li>
+            <strong>Face & Product Identification</strong> – From recognizing
+            friends in a crowd to identifying products on shelves, these
+            assistants provide contextual information instantly.
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- AI-Powered AR Translation -->
+    <article class="arvr-card reverse fade-in">
+      <div class="arvr-content">
+        <h3>AI-Powered AR Translation</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Instant Visual Translation</strong> – AI translates text in
+            real-time as you point your device at signs, menus, or documents,
+            breaking language barriers effortlessly.
+          </li>
+          <li>
+            <strong>Cultural Context Integration</strong> – Beyond literal
+            translation, AI provides cultural context and local customs to
+            enhance understanding and communication.
+          </li>
+          <li>
+            <strong>Multi-Modal Communication</strong> – Combines visual, audio,
+            and gesture recognition to create comprehensive translation
+            experiences for natural interaction.
+          </li>
+        </ul>
+      </div>
+      <div class="arvr-image">
+        <img
+          src="{% static './media/ar4.jpg' %}"
+          alt="AI-powered AR translation"
+          loading="lazy"
+        />
+      </div>
+    </article>
+
+    <!-- Gesture & Action Recognition -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/ar5.jpg' %}"
+          alt="Gesture and action recognition"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>Gesture & Action Recognition</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Natural Hand Tracking</strong> – AI recognizes precise
+            finger movements and hand gestures, enabling intuitive control of AR
+            interfaces without physical controllers.
+          </li>
+          <li>
+            <strong>Full-Body Motion Analysis</strong> – Advanced computer
+            vision analyzes entire body movements for fitness tracking, sports
+            analysis, and interactive gaming experiences.
+          </li>
+          <li>
+            <strong>Predictive Gesture Intelligence</strong> – AI learns user
+            patterns to anticipate actions, making AR interactions feel natural
+            and responsive to individual behavior.
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- VR Section Divider -->
+<div class="section-divider" id="vr-section">
+  <h2 data-aos="fade-up">Virtual Reality Applications</h2>
+</div>
+
+<!-- VR Applications -->
+<section class="section" aria-label="Virtual Reality Applications">
+  <div class="section-container">
+    <!-- AI-Driven World Generation -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/vr1.jpg' %}"
+          alt="AI-driven world generation"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>AI-Driven World Generation</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Procedural Environment Creation</strong> – AI generates
+            infinite, unique virtual worlds with realistic physics, weather
+            systems, and diverse ecosystems that adapt to user preferences.
+          </li>
+          <li>
+            <strong>Dynamic Content Adaptation</strong> – Virtual environments
+            evolve in real-time based on user behavior, creating personalized
+            experiences that feel truly alive and responsive.
+          </li>
+          <li>
+            <strong>Photorealistic Asset Generation</strong> – Advanced AI
+            creates stunning textures, lighting, and atmospheric effects that
+            blur the line between virtual and reality.
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Lifelike Virtual Characters -->
+    <article class="arvr-card reverse fade-in">
+      <div class="arvr-content">
+        <h3>Lifelike Virtual Characters (AI NPCs)</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Intelligent Conversational AI</strong> – Virtual characters
+            engage in natural, context-aware conversations, remembering past
+            interactions and developing unique personalities over time.
+          </li>
+          <li>
+            <strong>Emotional Intelligence Systems</strong> – AI NPCs recognize
+            and respond to user emotions, facial expressions, and vocal tones,
+            creating deeply empathetic virtual relationships.
+          </li>
+          <li>
+            <strong>Behavioral Learning Networks</strong> – Characters learn
+            from user interactions, developing individual quirks, preferences,
+            and relationship dynamics that feel authentically human.
+          </li>
+        </ul>
+      </div>
+      <div class="arvr-image">
+        <img
+          src="{% static './media/vr2.jpg' %}"
+          alt="Lifelike virtual characters"
+          loading="lazy"
+        />
+      </div>
+    </article>
+
+    <!-- Emotionally Aware Interactions -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/vr3.jpg' %}"
+          alt="Emotionally aware interactions"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>Emotionally Aware Interactions</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Real-Time Emotion Detection</strong> – Advanced AI analyzes
+            facial expressions, voice patterns, and physiological signals to
+            understand user emotional states in real-time.
+          </li>
+          <li>
+            <strong>Adaptive Experience Modulation</strong> – VR environments
+            automatically adjust music, lighting, and pacing based on detected
+            emotions to optimize user comfort and engagement.
+          </li>
+          <li>
+            <strong>Therapeutic Virtual Companions</strong> – AI-powered virtual
+            therapists provide personalized mental health support through
+            empathetic interactions and evidence-based interventions.
+          </li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Adaptive Learning & Simulation -->
+    <article class="arvr-card reverse fade-in">
+      <div class="arvr-content">
+        <h3>Adaptive Learning & Simulation</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Personalized Training Programs</strong> – AI creates
+            customized learning paths that adapt to individual skill levels,
+            learning styles, and progress rates for maximum educational
+            effectiveness.
+          </li>
+          <li>
+            <strong>Realistic Professional Simulations</strong> – High-fidelity
+            virtual environments allow safe practice of complex procedures in
+            medicine, aviation, and engineering with AI-driven scenario
+            generation.
+          </li>
+          <li>
+            <strong>Performance Analytics & Feedback</strong> – Advanced AI
+            analyzes user performance in real-time, providing detailed insights
+            and recommendations for continuous improvement.
+          </li>
+        </ul>
+      </div>
+      <div class="arvr-image">
+        <img
+          src="{% static './media/vr4.jpg' %}"
+          alt="Adaptive learning and simulation"
+          loading="lazy"
+        />
+      </div>
+    </article>
+
+    <!-- Procedural Storytelling -->
+    <article class="arvr-card fade-in">
+      <div class="arvr-image">
+        <img
+          src="{% static './media/vr5.jpg' %}"
+          alt="Procedural storytelling and dialogue"
+          loading="lazy"
+        />
+      </div>
+      <div class="arvr-content">
+        <h3>Procedural Storytelling & Dialogue</h3>
+        <ul class="arvr-features">
+          <li>
+            <strong>Dynamic Narrative Generation</strong> – AI creates branching
+            storylines that adapt to user choices, ensuring every playthrough
+            offers unique plot developments and character arcs.
+          </li>
+          <li>
+            <strong>Contextual Dialogue Systems</strong> – Virtual characters
+            generate contextually appropriate responses based on story
+            progression, relationship history, and current environmental
+            factors.
+          </li>
+          <li>
+            <strong>Emergent Character Development</strong> – AI-driven
+            personality systems allow virtual characters to grow and change
+            based on user interactions, creating evolving narrative experiences.
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" id="cta" aria-label="Call to Action">
+  <div class="section-container">
+    <div class="cta-content fade-in text-center">
+      <h2
+        style="
+          font-size: clamp(2.5rem, 6vw, 4rem);
+          margin-bottom: 2rem;
+          line-height: 1.2;
+          background: linear-gradient(
+            135deg,
+            var(--text-primary),
+            var(--accent-purple)
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        "
+      >
+        The future isn't virtual or augmented —<br />
+        <span
+          style="
+            background: linear-gradient(
+              135deg,
+              var(--accent-cyan),
+              var(--accent-pink)
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+          >it's limitless reality redefined.</span
         >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Enhanced Hero Section -->
-    <header class="hero" id="hero">
-      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
-      <div class="section-container">
-        <div class="hero-content text-center">
-          <div class="hero-badge fade-in" style="animation-delay: 0.2s">
-            <span>✦ IMMERSIVE TECHNOLOGY ✦</span>
-          </div>
-
-          <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
-            <span
-              style="
-                font-family: 'Inter', sans-serif;
-                font-size: clamp(3.5rem, 10vw, 7rem);
-                line-height: 1.1;
-                font-weight: 700;
-                background: linear-gradient(
-                  135deg,
-                  var(--text-primary),
-                  var(--accent-purple)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              "
-            >
-              AR/VR Revolution
-            </span>
-            <br />
-          </h1>
-
-          <div class="hero-actions fade-in" style="animation-delay: 0.8s">
-            <a href="#ar-section" class="btn btn-primary">
-              <span>Explore AR Magic</span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                />
-              </svg>
-            </a>
-            <a href="#vr-section" class="btn btn-secondary">
-              <span>Discover VR Worlds</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="hero-scroll fade-in" style="animation-delay: 1s">
-        <div class="scroll-line"></div>
-        <div class="scroll-dot"></div>
-      </div>
-    </header>
-
-    <!-- Introduction Section -->
-    <section class="section" id="intro" aria-label="Introduction to AR/VR">
-      <div class="section-container">
-        <div class="grid-2-col items-center">
-          <div class="fade-in">
-            <div class="section-badge">
-              <span>◆ SPATIAL COMPUTING ◆</span>
-            </div>
-            <h2
-              class="section-title"
-              style="
-                font-size: clamp(3rem, 7vw, 5rem);
-                margin-bottom: 2rem;
-                background: linear-gradient(
-                  135deg,
-                  var(--text-primary),
-                  var(--accent-purple)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              "
-            >
-              Reality <br />Reimagined
-            </h2>
-            <div class="content-luxury">
-              <p
-                class="text-body-xl"
-                style="
-                  color: var(--text-secondary);
-                  font-weight: 300;
-                  margin-bottom: var(--space-8);
-                  line-height: 1.8;
-                  font-size: 1.3rem;
-                "
-              >
-                Augmented and Virtual Reality represent the convergence of
-                digital and physical worlds — creating immersive experiences
-                that transcend traditional computing boundaries.
-              </p>
-              <p
-                class="text-body-lg"
-                style="
-                  color: var(--text-muted);
-                  margin-bottom: var(--space-8);
-                  line-height: 1.7;
-                "
-              >
-                From AR's seamless overlay of digital information onto reality
-                to VR's complete transportation into virtual universes, these
-                technologies redefine human-computer interaction.
-              </p>
-              <p
-                class="text-body-lg"
-                style="color: var(--text-muted); line-height: 1.7"
-              >
-                Experience the future where the line between imagination and
-                reality dissolves into infinite possibilities of spatial
-                computing excellence.
-              </p>
-            </div>
-          </div>
-          <div class="fade-in">
-            <div class="card">
-              <img
-                src="{% static './media/homear.jpg' %}"
-                alt="AR/VR immersive experience"
-                class="card-image"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- AR Section Divider -->
-    <div class="section-divider" id="ar-section">
-      <h2 data-aos="fade-up">Augmented Reality Applications</h2>
+      </h2>
+      <p
+        style="
+          font-size: 1.3rem;
+          color: var(--text-secondary);
+          margin-bottom: 3rem;
+          max-width: 700px;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.7;
+          font-weight: 300;
+        "
+      >
+        Step into tomorrow where imagination becomes your interface and reality
+        bends to possibility.
+      </p>
+      <a
+        href="{% url 'home' %}"
+        class="btn btn-primary"
+        style="font-size: 1.1rem; padding: 1rem 3rem"
+      >
+        <span>Explore More Technologies</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+          />
+        </svg>
+      </a>
     </div>
-
-    <!-- AR Applications -->
-    <section class="section" aria-label="Augmented Reality Applications">
-      <div class="section-container">
-        <!-- Real-Time Object Recognition -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/ar1.jpg' %}"
-              alt="Real-time object recognition"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>Real-Time Object Recognition</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Instant Object Recognition</strong> – AI instantly
-                identifies and labels real-world objects like chairs, laptops,
-                and plants, enabling seamless human-environment interaction.
-              </li>
-              <li>
-                <strong>Context-Aware Overlays</strong> – It adds meaningful
-                data like names, specs, or temperature directly on the
-                recognized objects, making AR truly informative and interactive.
-              </li>
-              <li>
-                <strong>3D Mapping & Depth Estimation</strong> – AI builds a
-                virtual depth grid of the environment, allowing precise
-                placement of virtual elements and obstacle-aware AR experiences.
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Environment Mapping -->
-        <article class="arvr-card reverse fade-in">
-          <div class="arvr-content">
-            <h3>Environment Mapping & Depth Estimation</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Accurate 3D Environment Mapping</strong> – AI scans and
-                builds real-time 3D models of the surroundings, capturing
-                surfaces, structures, and spatial dimensions with high
-                precision.
-              </li>
-              <li>
-                <strong>Room-Scale AR Experiences</strong> – It enables virtual
-                objects to interact naturally within the full scale of a room,
-                enhancing immersion and spatial coherence.
-              </li>
-              <li>
-                <strong>Obstacle-Aware Overlays</strong> – AI ensures virtual
-                content avoids real-world collisions by understanding object
-                depth, distance, and boundaries in real time.
-              </li>
-            </ul>
-          </div>
-          <div class="arvr-image">
-            <img
-              src="{% static './media/ar2.jpg' %}"
-              alt="Environment mapping and depth estimation"
-              loading="lazy"
-            />
-          </div>
-        </article>
-
-        <!-- Smart AR Assistants -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/ar3.jpg' %}"
-              alt="Smart AR assistants"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>Smart AR Assistants</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Real-Time Translation & Recognition</strong> –
-                AI-powered AR can translate foreign signs, labels, and menus
-                instantly, making navigation and communication seamless across
-                languages.
-              </li>
-              <li>
-                <strong>Live Navigation & Direction Overlays</strong> – Smart
-                assistants guide users with real-time arrows, route highlights,
-                and contextual cues right on the physical path in front of them.
-              </li>
-              <li>
-                <strong>Face & Product Identification</strong> – From
-                recognizing friends in a crowd to identifying products on
-                shelves, these assistants provide contextual information
-                instantly.
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- AI-Powered AR Translation -->
-        <article class="arvr-card reverse fade-in">
-          <div class="arvr-content">
-            <h3>AI-Powered AR Translation</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Instant Visual Translation</strong> – AI translates text
-                in real-time as you point your device at signs, menus, or
-                documents, breaking language barriers effortlessly.
-              </li>
-              <li>
-                <strong>Cultural Context Integration</strong> – Beyond literal
-                translation, AI provides cultural context and local customs to
-                enhance understanding and communication.
-              </li>
-              <li>
-                <strong>Multi-Modal Communication</strong> – Combines visual,
-                audio, and gesture recognition to create comprehensive
-                translation experiences for natural interaction.
-              </li>
-            </ul>
-          </div>
-          <div class="arvr-image">
-            <img
-              src="{% static './media/ar4.jpg' %}"
-              alt="AI-powered AR translation"
-              loading="lazy"
-            />
-          </div>
-        </article>
-
-        <!-- Gesture & Action Recognition -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/ar5.jpg' %}"
-              alt="Gesture and action recognition"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>Gesture & Action Recognition</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Natural Hand Tracking</strong> – AI recognizes precise
-                finger movements and hand gestures, enabling intuitive control
-                of AR interfaces without physical controllers.
-              </li>
-              <li>
-                <strong>Full-Body Motion Analysis</strong> – Advanced computer
-                vision analyzes entire body movements for fitness tracking,
-                sports analysis, and interactive gaming experiences.
-              </li>
-              <li>
-                <strong>Predictive Gesture Intelligence</strong> – AI learns
-                user patterns to anticipate actions, making AR interactions feel
-                natural and responsive to individual behavior.
-              </li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- VR Section Divider -->
-    <div class="section-divider" id="vr-section">
-      <h2 data-aos="fade-up">Virtual Reality Applications</h2>
-    </div>
-
-    <!-- VR Applications -->
-    <section class="section" aria-label="Virtual Reality Applications">
-      <div class="section-container">
-        <!-- AI-Driven World Generation -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/vr1.jpg' %}"
-              alt="AI-driven world generation"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>AI-Driven World Generation</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Procedural Environment Creation</strong> – AI generates
-                infinite, unique virtual worlds with realistic physics, weather
-                systems, and diverse ecosystems that adapt to user preferences.
-              </li>
-              <li>
-                <strong>Dynamic Content Adaptation</strong> – Virtual
-                environments evolve in real-time based on user behavior,
-                creating personalized experiences that feel truly alive and
-                responsive.
-              </li>
-              <li>
-                <strong>Photorealistic Asset Generation</strong> – Advanced AI
-                creates stunning textures, lighting, and atmospheric effects
-                that blur the line between virtual and reality.
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Lifelike Virtual Characters -->
-        <article class="arvr-card reverse fade-in">
-          <div class="arvr-content">
-            <h3>Lifelike Virtual Characters (AI NPCs)</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Intelligent Conversational AI</strong> – Virtual
-                characters engage in natural, context-aware conversations,
-                remembering past interactions and developing unique
-                personalities over time.
-              </li>
-              <li>
-                <strong>Emotional Intelligence Systems</strong> – AI NPCs
-                recognize and respond to user emotions, facial expressions, and
-                vocal tones, creating deeply empathetic virtual relationships.
-              </li>
-              <li>
-                <strong>Behavioral Learning Networks</strong> – Characters learn
-                from user interactions, developing individual quirks,
-                preferences, and relationship dynamics that feel authentically
-                human.
-              </li>
-            </ul>
-          </div>
-          <div class="arvr-image">
-            <img
-              src="{% static './media/vr2.jpg' %}"
-              alt="Lifelike virtual characters"
-              loading="lazy"
-            />
-          </div>
-        </article>
-
-        <!-- Emotionally Aware Interactions -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/vr3.jpg' %}"
-              alt="Emotionally aware interactions"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>Emotionally Aware Interactions</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Real-Time Emotion Detection</strong> – Advanced AI
-                analyzes facial expressions, voice patterns, and physiological
-                signals to understand user emotional states in real-time.
-              </li>
-              <li>
-                <strong>Adaptive Experience Modulation</strong> – VR
-                environments automatically adjust music, lighting, and pacing
-                based on detected emotions to optimize user comfort and
-                engagement.
-              </li>
-              <li>
-                <strong>Therapeutic Virtual Companions</strong> – AI-powered
-                virtual therapists provide personalized mental health support
-                through empathetic interactions and evidence-based
-                interventions.
-              </li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Adaptive Learning & Simulation -->
-        <article class="arvr-card reverse fade-in">
-          <div class="arvr-content">
-            <h3>Adaptive Learning & Simulation</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Personalized Training Programs</strong> – AI creates
-                customized learning paths that adapt to individual skill levels,
-                learning styles, and progress rates for maximum educational
-                effectiveness.
-              </li>
-              <li>
-                <strong>Realistic Professional Simulations</strong> –
-                High-fidelity virtual environments allow safe practice of
-                complex procedures in medicine, aviation, and engineering with
-                AI-driven scenario generation.
-              </li>
-              <li>
-                <strong>Performance Analytics & Feedback</strong> – Advanced AI
-                analyzes user performance in real-time, providing detailed
-                insights and recommendations for continuous improvement.
-              </li>
-            </ul>
-          </div>
-          <div class="arvr-image">
-            <img
-              src="{% static './media/vr4.jpg' %}"
-              alt="Adaptive learning and simulation"
-              loading="lazy"
-            />
-          </div>
-        </article>
-
-        <!-- Procedural Storytelling -->
-        <article class="arvr-card fade-in">
-          <div class="arvr-image">
-            <img
-              src="{% static './media/vr5.jpg' %}"
-              alt="Procedural storytelling and dialogue"
-              loading="lazy"
-            />
-          </div>
-          <div class="arvr-content">
-            <h3>Procedural Storytelling & Dialogue</h3>
-            <ul class="arvr-features">
-              <li>
-                <strong>Dynamic Narrative Generation</strong> – AI creates
-                branching storylines that adapt to user choices, ensuring every
-                playthrough offers unique plot developments and character arcs.
-              </li>
-              <li>
-                <strong>Contextual Dialogue Systems</strong> – Virtual
-                characters generate contextually appropriate responses based on
-                story progression, relationship history, and current
-                environmental factors.
-              </li>
-              <li>
-                <strong>Emergent Character Development</strong> – AI-driven
-                personality systems allow virtual characters to grow and change
-                based on user interactions, creating evolving narrative
-                experiences.
-              </li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section" id="cta" aria-label="Call to Action">
-      <div class="section-container">
-        <div class="cta-content fade-in text-center">
-          <h2
-            style="
-              font-size: clamp(2.5rem, 6vw, 4rem);
-              margin-bottom: 2rem;
-              line-height: 1.2;
-              background: linear-gradient(
-                135deg,
-                var(--text-primary),
-                var(--accent-purple)
-              );
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            "
-          >
-            The future isn't virtual or augmented —<br />
-            <span
-              style="
-                background: linear-gradient(
-                  135deg,
-                  var(--accent-cyan),
-                  var(--accent-pink)
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-              "
-              >it's limitless reality redefined.</span
-            >
-          </h2>
-          <p
-            style="
-              font-size: 1.3rem;
-              color: var(--text-secondary);
-              margin-bottom: 3rem;
-              max-width: 700px;
-              margin-left: auto;
-              margin-right: auto;
-              line-height: 1.7;
-              font-weight: 300;
-            "
-          >
-            Step into tomorrow where imagination becomes your interface and
-            reality bends to possibility.
-          </p>
-          <a
-            href="{% url 'home' %}"
-            class="btn btn-primary"
-            style="font-size: 1.1rem; padding: 1rem 3rem"
-          >
-            <span>Explore More Technologies</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer section">
-      <div class="section-container">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-brand">
-              <h3
-                class="text-h3 mb-4"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--text-primary),
-                    var(--accent-purple)
-                  );
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                "
-              >
-                AI Beyond Sight
-              </h3>
-              <p class="text-body" style="color: var(--text-secondary)">
-                Transforming dreams into digital realities through cutting-edge
-                AR/VR and immersive technologies.
-              </p>
-            </div>
-
-            <div class="footer-links">
-              <div class="footer-section">
-                <h4 class="footer-title" style="color: var(--accent-cyan)">
-                  Explore
-                </h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'genai' %}" class="footer-link"
-                      >Generative AI</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'analytic' %}" class="footer-link"
-                      >Analytics</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="footer-section">
-                <h4 class="footer-title" style="color: var(--accent-purple)">
-                  Community
-                </h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'padlet' %}" class="footer-link"
-                      >Dream Board</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'concerns' %}" class="footer-link"
-                      >Discussions</a
-                    >
-                  </li>
-                  <li><a href="#" class="footer-link">Newsletter</a></li>
-                  <li><a href="#" class="footer-link">Blog</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p class="text-body-sm" style="color: var(--text-muted)">
-              © 2025 AI Beyond Sight. All rights reserved.
-            </p>
-            <p
-              class="footer-tagline"
-              style="color: var(--accent-cyan); font-style: italic"
-            >
-              "Immersion is the language of the future."
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Enhanced Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="{% static 'js/vanta.net.min.js' %}"></script>
-    <script src="{% static 'js/premium-script.js' %}" defer></script>
-
-    <!-- AR/VR Enhancements -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Enhanced typed text for hero
-        if (document.getElementById("typed-hero")) {
-          new Typed("#typed-hero", {
-            strings: [
-              "Beyond Reality's Limits",
-              "Immersive Experiences",
-              "Spatial Computing Future",
-              "Digital Reality Mastery",
-            ],
-            typeSpeed: 60,
-            backSpeed: 40,
-            backDelay: 2000,
-            loop: true,
-            cursorChar: "|",
-          });
-        }
-
-        // Enhanced scroll effects for AR/VR cards
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }
-          });
-        }, observerOptions);
-
-        // Observe all AR/VR cards
-        document.querySelectorAll(".arvr-card").forEach((card) => {
-          observer.observe(card);
-        });
-
-        // Enhanced hover effects for cards
-        const arvrCards = document.querySelectorAll(".arvr-card");
-        arvrCards.forEach((card) => {
-          card.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-8px)";
-          });
-
-          card.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0)";
-          });
-        });
-
-        // Smooth scrolling for section links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute("href"));
-            if (target) {
-              target.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-              });
-            }
-          });
-        });
-      });
-
-      // Performance monitoring
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js").catch(() => {
-            console.log("Service worker registration enhanced");
-          });
-        });
-      }
-    </script>
-  </body>
-</html>
+  </div>
+</section>
+{% endblock %}

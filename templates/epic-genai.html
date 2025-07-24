@@ -1,52 +1,14 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Generative AI: Reimagining Reality Through Intelligence - Experience the evolution of artificial intelligence"
-    />
-    <meta
-      name="keywords"
-      content="Generative AI, AI, Artificial Intelligence, Machine Learning, Deep Learning"
-    />
-    <meta name="author" content="AI Beyond Sight" />
-    <meta name="theme-color" content="#0a0118" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+{% block title %}Generative AI: The Evolution of Intelligence | AI Beyond Sight{% endblock %}
 
-    <title>
-      Generative AI: The Evolution of Intelligence | AI Beyond Sight
-    </title>
+{% block description %}Generative AI: Reimagining Reality Through Intelligence - Experience the evolution of artificial intelligence{% endblock %}
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+{% block keywords %}Generative AI, AI, Artificial Intelligence, Machine Learning, Deep Learning{% endblock %}
 
-    <!-- Enhanced Typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
-
-    <!-- Epic Timeline CSS -->
+{% block extra_css %}
     <style>
-      /* Fix undefined variables */
-      :root {
-        --text-primary: var(--neutral-50);
-        --text-secondary: var(--neutral-300);
-        --text-muted: var(--neutral-400);
-        --bg-primary: var(--primary-900);
-      }
-
       /* Epic Timeline Styles */
       .timeline-epic {
         position: relative;
@@ -514,72 +476,9 @@
         }
       }
     </style>
-  </head>
-  <body>
-    <!-- Enhanced Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="navbar-container">
-        <a
-          href="{% url 'home' %}"
-          class="navbar-logo"
-          aria-label="AI Beyond Sight Home"
-        >
-          AI Beyond Sight
-        </a>
+{% endblock %}
 
-        <ul class="navbar-nav" role="menubar">
-          <li role="none">
-            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
-              >Home</a
-            >
-          </li>
-          <li role="none">
-            <a
-              href="{% url 'genai' %}"
-              class="navbar-link"
-              role="menuitem"
-              style="color: var(--accent-cyan)"
-              >Generative AI</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
-              >AR/VR</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
-              >Analytics</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
-              >Vision</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
-              >Concerns</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
-              >Padlet</a
-            >
-          </li>
-        </ul>
-
-        <button
-          class="navbar-toggle"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
+{% block content %}
 
     <!-- Enhanced Hero Section -->
     <header class="hero" id="hero">
@@ -1773,102 +1672,9 @@
         </div>
       </div>
     </section>
+{% endblock %}
 
-    <!-- Enhanced Footer -->
-    <footer class="footer section">
-      <div class="section-container">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-brand">
-              <h3
-                class="text-h3 mb-4"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    var(--text-primary),
-                    var(--accent-cyan)
-                  );
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                "
-              >
-                AI Beyond Sight
-              </h3>
-              <p class="text-body" style="color: var(--text-secondary)">
-                Transforming dreams into digital realities through cutting-edge
-                AI and immersive technologies.
-              </p>
-            </div>
-
-            <div class="footer-links">
-              <div class="footer-section">
-                <h4 class="footer-title" style="color: var(--accent-cyan)">
-                  Explore
-                </h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'genai' %}" class="footer-link"
-                      >Generative AI</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'analytic' %}" class="footer-link"
-                      >Analytics</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="footer-section">
-                <h4 class="footer-title" style="color: var(--accent-purple)">
-                  Community
-                </h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'padlet' %}" class="footer-link"
-                      >Dream Board</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'concerns' %}" class="footer-link"
-                      >Discussions</a
-                    >
-                  </li>
-                  <li><a href="#" class="footer-link">Newsletter</a></li>
-                  <li><a href="#" class="footer-link">Blog</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p class="text-body-sm" style="color: var(--text-muted)">
-              © 2025 AI Beyond Sight. All rights reserved.
-            </p>
-            <p
-              class="footer-tagline"
-              style="color: var(--accent-cyan); font-style: italic"
-            >
-              "Immersion is the language of the future."
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Enhanced Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="{% static 'js/vanta.net.min.js' %}"></script>
-    <script src="{% static 'js/premium-script.js' %}" defer></script>
-
-    <!-- Epic Enhancements -->
+{% block extra_js %}
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Enhanced typed text for hero
@@ -1937,15 +1743,5 @@
           });
         });
       });
-
-      // Performance monitoring
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js").catch(() => {
-            console.log("Service worker registration enhanced");
-          });
-        });
-      }
     </script>
-  </body>
-</html>
+{% endblock %}

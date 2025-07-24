@@ -1,459 +1,226 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AI Beyond Sight - Transforming dreams into digital realities through advanced AI, VR, and immersive technologies"
-    />
-    <meta
-      name="keywords"
-      content="AI, Artificial Intelligence, VR, AR, Generative AI, Digital Reality"
-    />
-    <meta name="author" content="AI Beyond Sight" />
+{% block title %}AI Beyond Sight - Where Dreams Meet Digital Reality{% endblock %}
+{% block description %}AI Beyond Sight - Transforming dreams into digital realities through advanced AI, VR, and immersive technologies{% endblock %}
+{% block keywords %}AI, Artificial Intelligence, VR, AR, Generative AI, Digital Reality{% endblock %}
+{% block content %}
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'media/logo.png' %}" />
-    <link rel="apple-touch-icon" href="{% static 'media/logo.png' %}" />
+<!-- Enhanced Hero Section -->
+<header class="hero" id="hero">
+  <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
 
-    <title>AI Beyond Sight - Where Dreams Meet Digital Reality</title>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+      Next Generation AI Platform
+    </div>
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
+      <span
+        style="
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(3.5rem, 10vw, 7rem);
+          line-height: 1.1;
+          font-weight: 700;
+          background: linear-gradient(
+            135deg,
+            var(--text-primary),
+            var(--accent-purple)
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        "
+      >
+        AR/VR Revolution
+      </span>
+      <br />
+    </h1>
+    <h2 class="hero-description fade-in">
+      <span id="typed-text"></span>
+    </h2>
 
-    <!-- Enhanced Font Loading -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <div class="hero-cta fade-in">
+      <a href="#applications" class="btn btn-primary">
+        Explore Applications
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+          />
+        </svg>
+      </a>
+      <a href="{% url 'vision' %}" class="btn btn-secondary"> Our Vision </a>
+    </div>
+  </div>
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{% static 'css/premium-style.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/premium-components.css' %}" />
+  <div class="scroll-indicator" aria-label="Scroll down">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
+    </svg>
+  </div>
+</header>
 
-    <!-- Critical CSS for above-the-fold content -->
-    <style>
-      /* Critical CSS for initial render */
-      body {
-        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-        background: linear-gradient(135deg, #0a0118 0%, #0f0f0f 100%);
-        color: #f3f4f6;
-        margin: 0;
-      }
-      .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        background: rgba(15, 15, 15, 0.8);
-        backdrop-filter: blur(20px);
-      }
-    </style>
+<!-- About Theme Section -->
+<section class="section" id="about">
+  <div class="section-container">
+    <div class="section-header fade-in">
+      <div class="section-badge">About Our Mission</div>
+      <h2 class="section-title">What Does AI Beyond Sight Mean?</h2>
+      <p class="section-description">
+        Artificial Intelligence transcends human perception, discovering
+        patterns invisible to us, interpreting signals beyond the visible
+        spectrum, and creating extraordinary outputs from pure data.
+      </p>
+    </div>
 
-    <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      href="{% static 'js/premium-script.js' %}"
-      as="script"
-    />
-    <link rel="preload" href="{% static 'media/logo.png' %}" as="image" />
-  </head>
-  <body>
-    <!-- Enhanced Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="navbar-container">
-        <a
-          href="{% url 'home' %}"
-          class="navbar-logo"
-          aria-label="AI Beyond Sight Home"
-        >
-          AI Beyond Sight
-        </a>
-
-        <ul class="navbar-nav" role="menubar">
-          <li role="none">
-            <a href="{% url 'home' %}" class="navbar-link" role="menuitem"
-              >Home</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'genai' %}" class="navbar-link" role="menuitem"
-              >Generative AI</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'arvr' %}" class="navbar-link" role="menuitem"
-              >AR/VR</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'analytic' %}" class="navbar-link" role="menuitem"
-              >Analytical AI</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'vision' %}" class="navbar-link" role="menuitem"
-              >Vision</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'concerns' %}" class="navbar-link" role="menuitem"
-              >Concerns</a
-            >
-          </li>
-          <li role="none">
-            <a href="{% url 'padlet' %}" class="navbar-link" role="menuitem"
-              >Padlet</a
-            >
-          </li>
-        </ul>
-
-        <button
-          class="navbar-toggle"
-          aria-label="Toggle mobile menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <div class="grid-2-col stagger-children">
+      <div class="content-block animate-child">
+        <h3 class="text-h3 mb-6">Limitless Perception</h3>
+        <p class="text-body-lg">
+          AI sees beyond human limitations, processing vast amounts of data to
+          uncover hidden insights and patterns that unlock new realms of
+          understanding and creativity.
+        </p>
       </div>
-    </nav>
+      <div class="content-block animate-child">
+        <h3 class="text-h3 mb-6">Creative Consciousness</h3>
+        <p class="text-body-lg">
+          With advanced generative models and immersive technologies, AI
+          transforms imagination into reality—painting surreal art, simulating
+          dreams, and building entire worlds from abstract thought.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Enhanced Hero Section -->
-    <header class="hero" id="hero">
-      <div class="hero-background" id="vanta-overlay" aria-hidden="true"></div>
+<!-- Applications Section -->
+<section class="section" id="applications">
+  <div class="section-container">
+    <div class="section-header fade-in">
+      <div class="section-badge">Core Technologies</div>
+      <h2 class="section-title">Where AI Meets Dreams</h2>
+      <p class="section-description">
+        Explore the cutting-edge applications that are reshaping how we interact
+        with digital reality.
+      </p>
+    </div>
 
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          Next Generation AI Platform
-        </div>
-
-        <h1 class="hero-title fade-in" style="animation-delay: 0.4s">
-          <span
-            style="
-              font-family: 'Inter', sans-serif;
-              font-size: clamp(3.5rem, 10vw, 7rem);
-              line-height: 1.1;
-              font-weight: 700;
-              background: linear-gradient(
-                135deg,
-                var(--text-primary),
-                var(--accent-purple)
-              );
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            "
-          >
-            AR/VR Revolution
-          </span>
-          <br />
-        </h1>
-        <h2 class="hero-description fade-in">
-          <span id="typed-text"></span>
-        </h2>
-
-        <div class="hero-cta fade-in">
-          <a href="#applications" class="btn btn-primary">
-            Explore Applications
+    <div class="card-grid stagger-children">
+      <article class="card animate-child">
+        <img
+          src="{% static 'media/homegen.jpg' %}"
+          alt="Generative AI visualization"
+          class="card-image"
+          loading="lazy"
+        />
+        <div class="card-content">
+          <h3 class="card-title">Generative AI</h3>
+          <p class="card-description">
+            Create stunning images, music, and videos from simple text prompts.
+            Revolutionary tools for media, marketing, and creative design that
+            bring imagination to life.
+          </p>
+          <a href="{% url 'genai' %}" class="btn btn-ghost mt-6">
+            Learn More
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
               />
             </svg>
           </a>
-          <a href="{% url 'vision' %}" class="btn btn-secondary">
-            Our Vision
+        </div>
+      </article>
+
+      <article class="card animate-child">
+        <img
+          src="{% static 'media/homeanalytic.jpg' %}"
+          alt="Analytical AI dashboard"
+          class="card-image"
+          loading="lazy"
+        />
+        <div class="card-content">
+          <h3 class="card-title">Analytical AI</h3>
+          <p class="card-description">
+            Advanced analytics that track trends, emotions, and consumer
+            behavior to build products people subconsciously desire before they
+            know it themselves.
+          </p>
+          <a href="{% url 'analytic' %}" class="btn btn-ghost mt-6">
+            Explore Analytics
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+              />
+            </svg>
           </a>
         </div>
-      </div>
+      </article>
 
-      <div class="scroll-indicator" aria-label="Scroll down">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7.41 8.84L12 13.42l4.59-4.58L18 10.25l-6 6-6-6z" />
-        </svg>
-      </div>
-    </header>
-
-    <!-- About Theme Section -->
-    <section class="section" id="about">
-      <div class="section-container">
-        <div class="section-header fade-in">
-          <div class="section-badge">About Our Mission</div>
-          <h2 class="section-title">What Does AI Beyond Sight Mean?</h2>
-          <p class="section-description">
-            Artificial Intelligence transcends human perception, discovering
-            patterns invisible to us, interpreting signals beyond the visible
-            spectrum, and creating extraordinary outputs from pure data.
+      <article class="card animate-child">
+        <img
+          src="{% static 'media/homear.jpg' %}"
+          alt="Augmented Reality interface"
+          class="card-image"
+          loading="lazy"
+        />
+        <div class="card-content">
+          <h3 class="card-title">Augmented Reality</h3>
+          <p class="card-description">
+            AI-powered AR that provides intelligent navigation and contextual
+            information in real-time. Perfect for malls, airports, museums, and
+            urban exploration.
           </p>
+          <a href="{% url 'arvr' %}" class="btn btn-ghost mt-6">
+            Discover AR/VR
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+              />
+            </svg>
+          </a>
         </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="grid-2-col stagger-children">
-          <div class="content-block animate-child">
-            <h3 class="text-h3 mb-6">Limitless Perception</h3>
-            <p class="text-body-lg">
-              AI sees beyond human limitations, processing vast amounts of data
-              to uncover hidden insights and patterns that unlock new realms of
-              understanding and creativity.
-            </p>
-          </div>
-          <div class="content-block animate-child">
-            <h3 class="text-h3 mb-6">Creative Consciousness</h3>
-            <p class="text-body-lg">
-              With advanced generative models and immersive technologies, AI
-              transforms imagination into reality—painting surreal art,
-              simulating dreams, and building entire worlds from abstract
-              thought.
-            </p>
-          </div>
-        </div>
+<!-- Vision Statement Section -->
+<section class="section" id="vision-statement">
+  <div class="section-container">
+    <div class="vision-content fade-in text-center">
+      <blockquote class="text-h2 mb-8">
+        "The future belongs to those who can see the unseen — and now, so can
+        machines."
+      </blockquote>
+
+      <div class="max-w-4xl mx-auto">
+        <p class="text-body-lg mb-6">
+          Our vision is to embrace AI not just as a tool, but as a creative
+          companion—one that extends our ability to dream, design, and discover.
+          From art to science, from fantasy to function, AI turns imagination
+          into immersive experiences.
+        </p>
+
+        <p class="text-body-lg">
+          In this world, your thoughts aren't just ideas—they're blueprints for
+          the digital realities AI helps bring to life. Join us in exploring the
+          infinite possibilities beyond sight.
+        </p>
       </div>
-    </section>
 
-    <!-- Applications Section -->
-    <section class="section" id="applications">
-      <div class="section-container">
-        <div class="section-header fade-in">
-          <div class="section-badge">Core Technologies</div>
-          <h2 class="section-title">Where AI Meets Dreams</h2>
-          <p class="section-description">
-            Explore the cutting-edge applications that are reshaping how we
-            interact with digital reality.
-          </p>
-        </div>
-
-        <div class="card-grid stagger-children">
-          <article class="card animate-child">
-            <img
-              src="{% static 'media/homegen.jpg' %}"
-              alt="Generative AI visualization"
-              class="card-image"
-              loading="lazy"
+      <div class="mt-8">
+        <a href="{% url 'vision' %}" class="btn btn-primary">
+          Explore Our Vision
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
             />
-            <div class="card-content">
-              <h3 class="card-title">Generative AI</h3>
-              <p class="card-description">
-                Create stunning images, music, and videos from simple text
-                prompts. Revolutionary tools for media, marketing, and creative
-                design that bring imagination to life.
-              </p>
-              <a href="{% url 'genai' %}" class="btn btn-ghost mt-6">
-                Learn More
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="card animate-child">
-            <img
-              src="{% static 'media/homeanalytic.jpg' %}"
-              alt="Analytical AI dashboard"
-              class="card-image"
-              loading="lazy"
-            />
-            <div class="card-content">
-              <h3 class="card-title">Analytical AI</h3>
-              <p class="card-description">
-                Advanced analytics that track trends, emotions, and consumer
-                behavior to build products people subconsciously desire before
-                they know it themselves.
-              </p>
-              <a href="{% url 'analytic' %}" class="btn btn-ghost mt-6">
-                Explore Analytics
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="card animate-child">
-            <img
-              src="{% static 'media/homear.jpg' %}"
-              alt="Augmented Reality interface"
-              class="card-image"
-              loading="lazy"
-            />
-            <div class="card-content">
-              <h3 class="card-title">Augmented Reality</h3>
-              <p class="card-description">
-                AI-powered AR that provides intelligent navigation and
-                contextual information in real-time. Perfect for malls,
-                airports, museums, and urban exploration.
-              </p>
-              <a href="{% url 'arvr' %}" class="btn btn-ghost mt-6">
-                Discover AR/VR
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                  />
-                </svg>
-              </a>
-            </div>
-          </article>
-        </div>
+          </svg>
+        </a>
       </div>
-    </section>
-
-    <!-- Vision Statement Section -->
-    <section class="section" id="vision-statement">
-      <div class="section-container">
-        <div class="vision-content fade-in text-center">
-          <blockquote class="text-h2 mb-8">
-            "The future belongs to those who can see the unseen — and now, so
-            can machines."
-          </blockquote>
-
-          <div class="max-w-4xl mx-auto">
-            <p class="text-body-lg mb-6">
-              Our vision is to embrace AI not just as a tool, but as a creative
-              companion—one that extends our ability to dream, design, and
-              discover. From art to science, from fantasy to function, AI turns
-              imagination into immersive experiences.
-            </p>
-
-            <p class="text-body-lg">
-              In this world, your thoughts aren't just ideas—they're blueprints
-              for the digital realities AI helps bring to life. Join us in
-              exploring the infinite possibilities beyond sight.
-            </p>
-          </div>
-
-          <div class="mt-8">
-            <a href="{% url 'vision' %}" class="btn btn-primary">
-              Explore Our Vision
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer section">
-      <div class="section-container">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-brand">
-              <h3 class="text-h3 mb-4">AI Beyond Sight</h3>
-              <p class="text-body">
-                Transforming dreams into digital realities through cutting-edge
-                AI and immersive technologies.
-              </p>
-            </div>
-
-            <div class="footer-links">
-              <div class="footer-section">
-                <h4 class="footer-title">Explore</h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'genai' %}" class="footer-link"
-                      >Generative AI</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'arvr' %}" class="footer-link">AR/VR</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'analytic' %}" class="footer-link"
-                      >Analytics</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'vision' %}" class="footer-link">Vision</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="footer-section">
-                <h4 class="footer-title">Community</h4>
-                <ul class="footer-nav">
-                  <li>
-                    <a href="{% url 'padlet' %}" class="footer-link"
-                      >Dream Board</a
-                    >
-                  </li>
-                  <li>
-                    <a href="{% url 'concerns' %}" class="footer-link"
-                      >Discussions</a
-                    >
-                  </li>
-                  <li><a href="#" class="footer-link">Newsletter</a></li>
-                  <li><a href="#" class="footer-link">Blog</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-bottom">
-            <p class="text-body-sm">
-              © 2025 AI Beyond Sight. All rights reserved.
-            </p>
-            <p class="footer-tagline">
-              "Immersion is no longer a luxury — it's the language of the
-              future."
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Enhanced Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-    <script src="{% static 'js/vanta.net.min.js' %}"></script>
-    <script src="{% static 'js/premium-script.js' %}" defer></script>
-
-    <!-- Performance and Analytics (Optional) -->
-    <script>
-      // Add any analytics or performance monitoring here
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js").catch(() => {
-            // Service worker registration failed
-          });
-        });
-      }
-    </script>
-  </body>
-</html>
+    </div>
+  </div>
+</section>
+{% endblock %}
