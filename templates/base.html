@@ -21,17 +21,13 @@
 
     <title>{% block title %}AI Beyond Sight - Where Dreams Meet Digital Reality{% endblock %}</title>
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <!-- Enhanced Font Loading -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="{% static 'css/inter.css' %}"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      href="{% static 'css/jetbrains.css' %}"
       rel="stylesheet"
     />
 
@@ -234,8 +230,8 @@
     </footer>
 
     <!-- Enhanced Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="{% static 'js/typed.js' %}"></script>
+    <script src="{% static 'js/three.js' %}"></script>
     <script src="{% static 'js/vanta.net.min.js' %}"></script>
     <script src="{% static 'js/premium-script.js' %}" defer></script>
 
